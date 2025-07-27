@@ -461,7 +461,7 @@ st.markdown("""
         <p style="color: #ffffff; font-size: 1.1rem; margin: 0;">Empowering education through artificial intelligence</p>
     </div>
     
-    <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; margin-bottom: 2rem; text-align: center;">
         <div style="color: #00ff88;">
             <strong>🤖 Powered by</strong><br>
             <span style="color: #ffffff;">Gemini AI</span>
