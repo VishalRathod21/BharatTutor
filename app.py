@@ -454,33 +454,54 @@ elif feature == "Homework Helper":
 
 # Enhanced Footer
 st.markdown("---")
-st.markdown("""
-<div style="background: #000000; padding: 3rem 2rem; border-radius: 12px; margin-top: 3rem; border: 1px solid #333; text-align: center;">
-    <div style="margin-bottom: 2rem;">
+
+# Create footer using Streamlit native components for better rendering
+with st.container():
+    st.markdown("""
+    <div style="background: #000000; padding: 2rem; border-radius: 12px; margin-top: 2rem; border: 1px solid #333; text-align: center;">
         <h3 style="color: #00ff88; margin-bottom: 1rem; font-size: 1.5rem;">🇮🇳 Bharat Tutor</h3>
-        <p style="color: #ffffff; font-size: 1.1rem; margin: 0;">Empowering education through artificial intelligence</p>
+        <p style="color: #ffffff; font-size: 1.1rem; margin-bottom: 2rem;">Empowering education through artificial intelligence</p>
     </div>
+    """, unsafe_allow_html=True)
     
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; margin-bottom: 2rem; text-align: center;">
-        <div style="color: #00ff88;">
-            <strong>🤖 Powered by</strong><br>
-            <span style="color: #ffffff;">Gemini AI</span>
-        </div>
-        <div style="color: #00b4ff;">
-            <strong>📚 Curriculum</strong><br>
-            <span style="color: #ffffff;">NCERT Based</span>
-        </div>
-        <div style="color: #ffc107;">
-            <strong>🎯 Coverage</strong><br>
-            <span style="color: #ffffff;">Classes 6-12</span>
-        </div>
-        <div style="color: #ff6b7a;">
-            <strong>📖 Subjects</strong><br>
-            <span style="color: #ffffff;">All Major Subjects</span>
-        </div>
-    </div>
+    # Use Streamlit columns for better layout
+    col1, col2, col3, col4 = st.columns(4)
     
-    <div style="border-top: 1px solid #333; padding-top: 1.5rem;">
+    with col1:
+        st.markdown("""
+        <div style="text-align: center; padding: 1rem; background: #000000; border-radius: 8px; border: 1px solid #333;">
+            <div style="color: #00ff88; font-weight: bold; margin-bottom: 0.5rem;">🤖 Powered by</div>
+            <div style="color: #ffffff;">Gemini AI</div>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col2:
+        st.markdown("""
+        <div style="text-align: center; padding: 1rem; background: #000000; border-radius: 8px; border: 1px solid #333;">
+            <div style="color: #00b4ff; font-weight: bold; margin-bottom: 0.5rem;">📚 Curriculum</div>
+            <div style="color: #ffffff;">NCERT Based</div>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col3:
+        st.markdown("""
+        <div style="text-align: center; padding: 1rem; background: #000000; border-radius: 8px; border: 1px solid #333;">
+            <div style="color: #ffc107; font-weight: bold; margin-bottom: 0.5rem;">🎯 Coverage</div>
+            <div style="color: #ffffff;">Classes 6-12</div>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col4:
+        st.markdown("""
+        <div style="text-align: center; padding: 1rem; background: #000000; border-radius: 8px; border: 1px solid #333;">
+            <div style="color: #ff6b7a; font-weight: bold; margin-bottom: 0.5rem;">📖 Subjects</div>
+            <div style="color: #ffffff;">All Major Subjects</div>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    # Final footer text
+    st.markdown("""
+    <div style="background: #000000; padding: 1.5rem; border-radius: 8px; margin-top: 1rem; border: 1px solid #333; text-align: center;">
         <p style="color: #ffffff; font-size: 0.9rem; margin: 0;">
             <em>Making quality education accessible to all Indian students</em>
         </p>
@@ -488,5 +509,4 @@ st.markdown("""
             Built with ❤️ for the future of education in India
         </p>
     </div>
-</div>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
