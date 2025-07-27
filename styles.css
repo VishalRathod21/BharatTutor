@@ -1,114 +1,725 @@
-/* Modern Dark Theme for AI Tutor App */
-
-/* Global styles */
-.stApp {
-    background: linear-gradient(135deg, #000000 0%, #111111 100%) !important;
-    color: #ffffff !important;
-    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Modern Dark Theme for Bharat Tutor */
+:root {
+    --primary: #7c4dff;
+    --primary-light: #9a67ea;
+    --primary-dark: #5e35b1;
+    --secondary: #00bcd4;
+    --success: #4caf50;
+    --warning: #ff9800;
+    --error: #f44336;
+    --background: #121212;
+    --surface: #1e1e1e;
+    --surface-light: #2d2d2d;
+    --surface-lighter: #3d3d3d;
+    --text-primary: #f5f5f5;
+    --text-secondary: #b0b0b0;
+    --border: #333333;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Main container */
-.main {
-    background: transparent;
+/* Base Styles */
+* {
+    margin: 0;
     padding: 0;
-}
-
-/* Header styling */
-.main .block-container {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    max-width: 1200px;
-}
-
-/* Title styling */
-h1 {
-    color: #00ff88 !important;
-    font-weight: 700 !important;
-    font-size: 2.5rem !important;
-    text-align: center !important;
-    margin-bottom: 0.5rem !important;
-    text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
-    background: linear-gradient(45deg, #00ff88, #00b4ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-/* Subtitle styling */
-.main p {
-    color: #b0b0b0 !important;
-    text-align: center !important;
-    font-size: 1.1rem !important;
-    margin-bottom: 2rem !important;
-}
-
-/* Sidebar styling */
-.css-1d391kg {
-    background: linear-gradient(180deg, #111111 0%, #000000 100%) !important;
-    border-right: 2px solid #333;
-    box-shadow: 4px 0 20px rgba(0, 255, 136, 0.1);
-}
-
-.sidebar .sidebar-content {
-    background: transparent;
-    padding: 1rem;
-}
-
-.sidebar .sidebar-content {
-    background: transparent;
-}
-
-/* Sidebar headers */
-.sidebar h2, .sidebar h3 {
-    color: #00ff88 !important;
-    font-weight: 600 !important;
-    margin-bottom: 1rem !important;
-    padding-bottom: 0.5rem !important;
-    border-bottom: 2px solid #333;
-    text-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
-}
-
-/* Selectbox styling */
-.stSelectbox > div > div {
-    background: #000000 !important;
-    border: 1px solid #444 !important;
-    border-radius: 8px !important;
-    color: #ffffff !important;
-    transition: all 0.3s ease;
-}
-
-.stSelectbox > div > div:hover {
-    border-color: #00ff88 !important;
-    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
-}
-
-.stSelectbox > div > div > div {
-    color: #ffffff !important;
-}
-
-/* Button styling */
-.stButton > button {
-    background: linear-gradient(45deg, #00ff88, #00b4ff) !important;
-    color: #000000 !important;
-    border: none !important;
-    border-radius: 12px !important;
-    padding: 0.8rem 2.5rem !important;
-    font-weight: 700 !important;
-    font-size: 1rem !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    box-shadow: 0 6px 20px rgba(0, 255, 136, 0.3);
-    text-transform: uppercase;
+    box-sizing: border-box;
     letter-spacing: 0.8px;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--background);
+    color: var(--text-primary);
+    line-height: 1.7;
+    position: relative;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Main App Container */
+.stApp {
+    background-color: var(--background);
+    color: var(--text-primary);
+    min-height: 100vh;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    transition: var(--transition);
+}
+
+/* Sidebar Styling */
+.stSidebar {
+    background-color: var(--surface) !important;
+    border-right: 1px solid var(--border);
+    color: #ffffff !important;
+}
+
+/* Sidebar headings and text */
+.stSidebar h1,
+.stSidebar h2,
+.stSidebar h3,
+.stSidebar h4,
+.stSidebar h5,
+.stSidebar h6,
+.stSidebar p,
+.stSidebar label,
+.stSidebar div,
+.stSidebar span,
+.stSidebar .stMarkdown,
+.stSidebar .stMarkdown p,
+.stSidebar .stMarkdown h1,
+.stSidebar .stMarkdown h2,
+.stSidebar .stMarkdown h3 {
+    color: #ffffff !important;
+}
+
+/* Sidebar input fields */
+.stSidebar .stSelectbox,
+.stSidebar .stTextInput {
+    background-color: var(--surface-light) !important;
+    color: #ffffff !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 0.5rem 1rem !important;
+    margin-bottom: 1rem;
+}
+
+/* Clean Select Box Styling */
+.stSidebar .stSelectbox {
+    margin-bottom: 1.25rem;
+}
+
+.stSidebar .stSelectbox label {
+    color: var(--text-primary) !important;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: block;
+    font-size: 0.95rem;
+}
+
+/* Base select container */
+.stSidebar [data-baseweb="select"] {
+    background-color: var(--surface) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 8px !important;
+    padding: 0.75rem 1rem !important;
+    min-height: 48px;
+    display: flex !important;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+/* Hover state */
+.stSidebar [data-baseweb="select"]:hover {
+    border-color: var(--primary) !important;
+}
+
+/* Selected value container */
+.stSidebar [data-baseweb="select"] > div {
+    color: var(--text-primary) !important;
+    background: transparent !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+/* Selected value text */
+.stSidebar [data-baseweb="select"] > div > div {
+    padding: 0 !important;
+    margin: 0 !important;
+    line-height: 1.5 !important;
+    font-size: 0.95rem;
+}
+
+/* Dropdown menu */
+.stSidebar [role="listbox"] {
+    background-color: var(--surface) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 8px !important;
+    margin-top: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 0.5rem 0 !important;
+}
+
+/* Dropdown options */
+.stSidebar [role="option"] {
+    color: var(--text-primary) !important;
+    background: transparent !important;
+    padding: 0.75rem 1.25rem !important;
+    font-size: 0.95rem;
+    line-height: 1.5 !important;
+    min-height: 44px;
+    display: flex !important;
+    align-items: center;
+}
+
+.stSidebar [role="option"]:hover {
+    background-color: var(--primary-light) !important;
+    color: white !important;
+}
+
+/* Fix for the dropdown arrow */
+.stSidebar [data-baseweb="select"] > div:after {
+    border-color: var(--text-primary) transparent transparent !important;
+}
+
+/* Focus state */
+.stSidebar [data-baseweb="select"]:focus-within {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 2px rgba(124, 77, 255, 0.2) !important;
+}
+
+/* Sidebar radio buttons and checkboxes */
+.stSidebar .stRadio > label,
+.stSidebar .stCheckbox > label,
+.stSidebar .stRadio label,
+.stSidebar .stCheckbox label {
+    color: #ffffff !important;
+    cursor: pointer;
+}
+
+/* Sidebar select dropdown */
+.stSidebar .stSelectbox [data-baseweb="select"] > div {
+    color: #ffffff !important;
+}
+
+/* Fix for Streamlit's markdown text */
+.stSidebar .stMarkdown,
+.stSidebar .stMarkdown p,
+.stSidebar .stMarkdown h1,
+.stSidebar .stMarkdown h2,
+.stSidebar .stMarkdown h3 {
+    color: #ffffff !important;
+}
+
+.stSidebar .stButton > button {
+    width: 100%;
+    margin: 0.5rem 0;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark)) !important;
+    transition: all 0.3s ease !important;
+    border: none !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 0.75rem 1.5rem !important;
+    font-weight: 600 !important;
+    text-transform: none !important;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+}
+
+.stSidebar .stButton > button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Main Content Area */
+.main .block-container {
+    padding: 2rem 2.5rem 4rem !important;
+    max-width: 1400px !important;
+}
+
+/* Cards and Containers */
+.stTabs [role="tablist"] {
+    background-color: var(--surface) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 0.5rem !important;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border) !important;
+}
+
+.stTabs [role="tab"] {
+    color: var(--text-secondary) !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: var(--radius-sm) !important;
+    margin: 0 0.25rem !important;
+    transition: var(--transition) !important;
+}
+
+.stTabs [aria-selected="true"] {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark)) !important;
+    color: white !important;
+    font-weight: 600 !important;
+    box-shadow: 0 2px 8px rgba(124, 77, 255, 0.3) !important;
+}
+
+/* Input Fields */
+.stTextInput > div > div > input,
+.stTextArea > div > div > textarea,
+.stSelectbox > div > div > div {
+    background-color: var(--surface-light) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 0.75rem 1rem !important;
+    transition: var(--transition) !important;
+}
+
+.stTextInput > div > div > input:focus,
+.stTextArea > div > div > textarea:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 2px rgba(124, 77, 255, 0.2) !important;
+}
+
+/* Buttons */
+.stButton > button {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark)) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 0.75rem 1.5rem !important;
+    font-weight: 600 !important;
+    text-transform: none !important;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+}
+
+.stButton > button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 15px rgba(124, 77, 255, 0.3) !important;
+}
+
+.stButton > button:active {
+    transform: translateY(0) !important;
+}
+
+/* Chat Interface */
+.stChatMessage {
+    padding: 1.25rem 1.5rem !important;
+    border-radius: var(--radius-md) !important;
+    margin: 0.75rem 0 !important;
+    max-width: 85% !important;
+    line-height: 1.7 !important;
+}
+
+.stChatMessage p {
+    margin-bottom: 0.5rem !important;
+}
+
+.stChatMessage pre {
+    background-color: var(--surface-light) !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 1rem !important;
+    margin: 0.75rem 0 !important;
+    overflow-x: auto;
+}
+
+/* Tooltips */
+.stTooltip {
+    background-color: var(--surface-light) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.875rem !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--surface);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--surface-lighter);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+/* Header Styles */
+.header-container {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    border-radius: var(--radius-lg);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.header-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.1), transparent 60%);
+    pointer-events: none;
+}
+
+.header-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: float 6s ease-in-out infinite;
+}
+
+.header-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem 0;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Header */
+.main .block-container {
+    padding: 2rem 2rem 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Sidebar */
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+}
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding: 1.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+.sidebar-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+.sidebar-header h2 {
+    color: white;
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.sidebar-subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.sidebar .sidebar-content {
+    padding: 1.5rem;
+}
+
+.sidebar h1, .sidebar h2, .sidebar h3 {
+    color: white !important;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.sidebar h1:after, .sidebar h2:after, .sidebar h3:after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 3px;
+}
+
+/* Form Elements */
+.stSelectbox > div > div,
+.stTextInput > div > div,
+.stTextArea > div > div {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-sm) !important;
+    transition: var(--transition) !important;
+}
+
+.stSelectbox > div > div:hover,
+.stTextInput > div > div:hover,
+.stTextArea > div > div:hover {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2) !important;
+}
+
+/* Buttons */
+.stButton > button {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark)) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 0.75rem 1.5rem !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    text-transform: none !important;
+    transition: var(--transition) !important;
+    box-shadow: var(--shadow-sm) !important;
+    width: 100%;
     position: relative;
     overflow: hidden;
 }
 
 .stButton > button:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 8px 25px rgba(0, 255, 136, 0.4) !important;
-    background: linear-gradient(45deg, #00b4ff, #00ff88) !important;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md) !important;
+    background: linear-gradient(135deg, var(--primary-light), var(--primary)) !important;
 }
 
+/* Cards */
+.card {
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Feature Headers */
+.feature-header {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    color: white;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.1), transparent 60%);
+    pointer-events: none;
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-content h2 {
+    margin: 0 0 0.75rem 0;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.feature-content p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Example Questions */
+.stButton > button {
+    transition: all 0.3s ease !important;
+    margin-bottom: 1rem;
+    text-align: left;
+    white-space: normal;
+    height: auto;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem 1.5rem !important;
+    border: 1px solid var(--border) !important;
+    background: var(--surface) !important;
+    color: var(--text-primary) !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+.stButton > button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: var(--shadow-md) !important;
+    border-color: var(--primary) !important;
+}
+
+.stButton > button:active {
+    transform: translateY(0) !important;
+}
+
+/* Message Components */
+.message {
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.message:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
+}
+
+.message-role {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+}
+
+.message-time {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+.message-content {
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+.message-meta {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* User Message */
+.user-message {
+    background: rgba(0, 136, 255, 0.03);
+    border-left: 4px solid var(--primary);
+}
+
+.user-message .message-role {
+    background: var(--primary);
+    color: white;
+}
+
+/* Assistant Message */
+.assistant-message {
+    background: rgba(0, 255, 136, 0.03);
+    border-left: 4px solid var(--success);
+}
+
+.assistant-message .message-role {
+    background: var(--success);
+    color: white;
+}
+
+/* Badges */
+.badge {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* Tabs */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 8px;
+    margin: 2rem 0 1.5rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.stTabs [data-baseweb="tab"] {
+    height: 48px;
+    padding: 0 1.5rem;
+    border-radius: var(--radius-sm);
+    background-color: transparent;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.stTabs [aria-selected="true"] {
+    background-color: var(--primary) !important;
+    color: white !important;
+    font-weight: 600;
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+.mt-4 { margin-top: 2rem; }
+.p-3 { padding: 1.5rem; }
+.rounded { border-radius: var(--radius-md); }
+.shadow { box-shadow: var(--shadow-md); }
+
+/* Button States */
 .stButton > button:active {
     transform: translateY(0px) !important;
 }
@@ -126,9 +737,9 @@ h1 {
 
 /* Text input styling */
 .stTextInput > div > div > input {
-    background: #000000 !important;
-    border: 1px solid #444 !important;
-    border-radius: 8px !important;
+    background: var(--surface) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-sm) !important;
     color: #ffffff !important;
     padding: 0.75rem !important;
     font-size: 1rem !important;

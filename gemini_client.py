@@ -1,48 +1,108 @@
 import os
 import logging
-from google import genai
-from google.genai import types
+import time
+from typing import Optional, Dict, Any
+
+# Load environment variables
+from dotenv import load_dotenv
+load_dotenv()
+
+import google.generativeai as genai
+from google.generativeai.types import GenerationConfig, HarmCategory, HarmBlockThreshold
 
 class GeminiClient:
     def __init__(self, api_key: str):
         """Initialize Gemini client with API key."""
-        self.client = genai.Client(api_key=api_key)
-        self.model = "gemini-2.5-flash"
-        
-    def answer_question(self, question: str, context: str, subject: str, class_level: str) -> str:
-        """Generate answer for student question with NCERT context."""
         try:
-            prompt = f"""
-            You are an AI tutor for Indian students following the NCERT curriculum. 
+            # Configure the Gemini API with retry logic
+            genai.configure(api_key=api_key)
             
-            Student Details:
-            - Class: {class_level}
-            - Subject: {subject}
+            # List available models
+            print("Listing available models...")
+            for model in genai.list_models():
+                if 'generateContent' in model.supported_generation_methods:
+                    print(f"Model: {model.name}, Supports generateContent: {model.supported_generation_methods}")
             
-            Question: {question}
+            # Try to use the most capable available model
+            model_name = 'gemini-1.5-flash'  # Try the latest model first
             
-            Relevant NCERT Context: {context}
-            
-            Instructions:
-            1. Provide a clear, age-appropriate answer based on NCERT curriculum
-            2. Use simple language suitable for the student's class level
-            3. Include examples where helpful
-            4. If the question is beyond the curriculum, gently guide to appropriate level
-            5. Always be encouraging and supportive
-            
-            Answer:
-            """
-            
-            response = self.client.models.generate_content(
-                model=self.model,
-                contents=prompt
+            # Initialize the model
+            self.model = genai.GenerativeModel(
+                model_name=model_name,
+                generation_config=GenerationConfig(
+                    temperature=0.7,
+                    top_p=0.95,
+                    top_k=40,
+                    max_output_tokens=2048,
+                ),
+                safety_settings={
+                    HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
+                    HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
+                    HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE,
+                    HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
+                }
             )
-            
-            return response.text or "I'm sorry, I couldn't generate an answer. Please try rephrasing your question."
-            
+            self.chat = self.model.start_chat(history=[])
+            logging.info(f"Gemini client initialized with model: {model_name}")
         except Exception as e:
-            logging.error(f"Error in answer_question: {e}")
-            return f"Error generating answer: {str(e)}"
+            logging.error(f"Failed to initialize Gemini client: {str(e)}")
+            raise
+        
+    def answer_question(self, question: str, context: str, subject: str, class_level: str, max_retries: int = 3) -> str:
+        """Generate answer for student question with NCERT context."""
+        if not question.strip():
+            return "Please enter a valid question."
+        for attempt in range(max_retries):
+            try:
+                prompt = f"""
+                You are an AI tutor for Indian students following the NCERT curriculum. 
+                
+                Student Details:
+                - Class: {class_level}
+                - Subject: {subject}
+                
+                Question: {question}
+                
+                Relevant NCERT Context: {context}
+                
+                Instructions:
+                1. Provide a clear, age-appropriate answer based on NCERT curriculum
+                2. Use simple language suitable for the student's class level
+                3. Include examples where helpful
+                4. If the question is beyond the curriculum, gently guide to appropriate level
+                5. Always be encouraging and supportive
+                
+                Answer in markdown format with proper formatting:
+                """
+                
+                response = self.model.generate_content(prompt)
+                
+                # Handle different response formats
+                if hasattr(response, 'text'):
+                    return response.text
+                elif hasattr(response, 'parts'):
+                    return ' '.join(part.text for part in response.parts if hasattr(part, 'text'))
+                elif hasattr(response, 'candidates') and response.candidates:
+                    return response.candidates[0].content.parts[0].text
+                else:
+                    return "I'm sorry, I couldn't generate an answer. Please try rephrasing your question."
+                    
+            except Exception as e:
+                if "quota" in str(e).lower() and attempt < max_retries - 1:
+                    # Wait before retrying
+                    wait_time = 2 ** attempt  # Exponential backoff
+                    logging.warning(f"Rate limit hit, retrying in {wait_time} seconds...")
+                    time.sleep(wait_time)
+                    continue
+                
+                error_msg = f"Error generating answer: {str(e)}"
+                logging.error(error_msg)
+                return f"I encountered an error: {error_msg}"
+            
+            except Exception as e:
+                error_msg = f"Error in answer_question: {str(e)}"
+                logging.error(error_msg)
+                return f"Error: {error_msg}"
     
     def explain_topic(self, topic: str, context: str, subject: str, class_level: str, explanation_type: str) -> str:
         """Generate topic explanation based on NCERT curriculum."""
@@ -77,11 +137,7 @@ class GeminiClient:
             Explanation:
             """
             
-            response = self.client.models.generate_content(
-                model=self.model,
-                contents=prompt
-            )
-            
+            response = self.model.generate_content(prompt)
             return response.text or "I'm sorry, I couldn't generate an explanation. Please try again."
             
         except Exception as e:
@@ -122,11 +178,7 @@ class GeminiClient:
             Help Response:
             """
             
-            response = self.client.models.generate_content(
-                model=self.model,
-                contents=prompt
-            )
-            
+            response = self.model.generate_content(prompt)
             return response.text or "I'm sorry, I couldn't generate help. Please try rephrasing your problem."
             
         except Exception as e:
