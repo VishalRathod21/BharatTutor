@@ -1,0 +1,322 @@
+/* Modern Dark Theme for AI Tutor App */
+
+/* Global styles */
+.stApp {
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+    color: #ffffff;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Main container */
+.main {
+    background: transparent;
+    padding: 0;
+}
+
+/* Header styling */
+.main .block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    max-width: 1200px;
+}
+
+/* Title styling */
+h1 {
+    color: #00ff88 !important;
+    font-weight: 700 !important;
+    font-size: 2.5rem !important;
+    text-align: center !important;
+    margin-bottom: 0.5rem !important;
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+    background: linear-gradient(45deg, #00ff88, #00b4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Subtitle styling */
+.main p {
+    color: #b0b0b0 !important;
+    text-align: center !important;
+    font-size: 1.1rem !important;
+    margin-bottom: 2rem !important;
+}
+
+/* Sidebar styling */
+.css-1d391kg {
+    background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
+    border-right: 1px solid #333;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar .sidebar-content {
+    background: transparent;
+}
+
+/* Sidebar headers */
+.sidebar h2, .sidebar h3 {
+    color: #00ff88 !important;
+    font-weight: 600 !important;
+    margin-bottom: 1rem !important;
+    padding-bottom: 0.5rem !important;
+    border-bottom: 2px solid #333;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+}
+
+/* Selectbox styling */
+.stSelectbox > div > div {
+    background: #2a2a2a !important;
+    border: 1px solid #444 !important;
+    border-radius: 8px !important;
+    color: #ffffff !important;
+    transition: all 0.3s ease;
+}
+
+.stSelectbox > div > div:hover {
+    border-color: #00ff88 !important;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+}
+
+.stSelectbox > div > div > div {
+    color: #ffffff !important;
+}
+
+/* Button styling */
+.stButton > button {
+    background: linear-gradient(45deg, #00ff88, #00b4ff) !important;
+    color: #000000 !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 0.75rem 2rem !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(0, 255, 136, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stButton > button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(0, 255, 136, 0.4) !important;
+    background: linear-gradient(45deg, #00b4ff, #00ff88) !important;
+}
+
+.stButton > button:active {
+    transform: translateY(0px) !important;
+}
+
+/* Clear button special styling */
+.stButton > button[data-testid="baseButton-secondary"] {
+    background: linear-gradient(45deg, #ff4757, #ff6b7a) !important;
+    color: #ffffff !important;
+}
+
+.stButton > button[data-testid="baseButton-secondary"]:hover {
+    background: linear-gradient(45deg, #ff6b7a, #ff4757) !important;
+    box-shadow: 0 8px 25px rgba(255, 71, 87, 0.4) !important;
+}
+
+/* Text input styling */
+.stTextInput > div > div > input {
+    background: #2a2a2a !important;
+    border: 1px solid #444 !important;
+    border-radius: 8px !important;
+    color: #ffffff !important;
+    padding: 0.75rem !important;
+    font-size: 1rem !important;
+    transition: all 0.3s ease;
+}
+
+.stTextInput > div > div > input:focus {
+    border-color: #00ff88 !important;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2) !important;
+    outline: none !important;
+}
+
+/* Text area styling */
+.stTextArea > div > div > textarea {
+    background: #2a2a2a !important;
+    border: 1px solid #444 !important;
+    border-radius: 8px !important;
+    color: #ffffff !important;
+    padding: 1rem !important;
+    font-size: 1rem !important;
+    transition: all 0.3s ease;
+    resize: vertical;
+}
+
+.stTextArea > div > div > textarea:focus {
+    border-color: #00ff88 !important;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2) !important;
+    outline: none !important;
+}
+
+/* Radio button styling */
+.stRadio > div {
+    background: #2a2a2a !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+    border: 1px solid #444;
+}
+
+.stRadio > div > label {
+    color: #ffffff !important;
+}
+
+.stRadio > div > div > label {
+    color: #b0b0b0 !important;
+    transition: color 0.3s ease;
+}
+
+.stRadio > div > div > label:hover {
+    color: #00ff88 !important;
+}
+
+/* Slider styling */
+.stSlider > div > div > div > div {
+    background: #00ff88 !important;
+}
+
+.stSlider > div > div > div {
+    background: #444 !important;
+}
+
+/* Success/Error messages */
+.stSuccess {
+    background: linear-gradient(90deg, rgba(0, 255, 136, 0.1), rgba(0, 180, 255, 0.1)) !important;
+    border: 1px solid #00ff88 !important;
+    border-radius: 8px !important;
+    color: #00ff88 !important;
+}
+
+.stError {
+    background: linear-gradient(90deg, rgba(255, 71, 87, 0.1), rgba(255, 107, 122, 0.1)) !important;
+    border: 1px solid #ff4757 !important;
+    border-radius: 8px !important;
+    color: #ff4757 !important;
+}
+
+.stWarning {
+    background: linear-gradient(90deg, rgba(255, 193, 7, 0.1), rgba(255, 235, 59, 0.1)) !important;
+    border: 1px solid #ffc107 !important;
+    border-radius: 8px !important;
+    color: #ffc107 !important;
+}
+
+.stInfo {
+    background: linear-gradient(90deg, rgba(0, 180, 255, 0.1), rgba(0, 255, 136, 0.1)) !important;
+    border: 1px solid #00b4ff !important;
+    border-radius: 8px !important;
+    color: #00b4ff !important;
+}
+
+/* Expander styling */
+.streamlit-expanderHeader {
+    background: #2a2a2a !important;
+    border: 1px solid #444 !important;
+    border-radius: 8px !important;
+    color: #ffffff !important;
+    transition: all 0.3s ease;
+}
+
+.streamlit-expanderHeader:hover {
+    border-color: #00ff88 !important;
+    background: #333 !important;
+}
+
+.streamlit-expanderContent {
+    background: #1a1a1a !important;
+    border: 1px solid #444 !important;
+    border-top: none !important;
+    border-radius: 0 0 8px 8px !important;
+    padding: 1rem !important;
+}
+
+/* Columns styling */
+.row-widget {
+    gap: 1rem;
+}
+
+/* Custom headers */
+h2, h3 {
+    color: #00b4ff !important;
+    font-weight: 600 !important;
+    margin-bottom: 1rem !important;
+    text-shadow: 0 0 10px rgba(0, 180, 255, 0.2);
+}
+
+/* Loading spinner */
+.stSpinner {
+    color: #00ff88 !important;
+}
+
+/* Markdown content */
+.stMarkdown {
+    color: #ffffff !important;
+}
+
+.stMarkdown h3 {
+    color: #00ff88 !important;
+    border-bottom: 2px solid #333 !important;
+    padding-bottom: 0.5rem !important;
+}
+
+/* Footer styling */
+.footer {
+    background: linear-gradient(90deg, #1a1a1a, #0f0f0f) !important;
+    border-top: 1px solid #333 !important;
+    margin-top: 2rem !important;
+    padding: 2rem !important;
+    border-radius: 8px !important;
+}
+
+/* Custom animations */
+@keyframes glow {
+    0% { box-shadow: 0 0 10px rgba(0, 255, 136, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.4); }
+    100% { box-shadow: 0 0 10px rgba(0, 255, 136, 0.2); }
+}
+
+.glow-animation {
+    animation: glow 2s infinite;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem !important;
+    }
+    
+    .main .block-container {
+        padding: 1rem !important;
+    }
+    
+    .stButton > button {
+        padding: 0.5rem 1rem !important;
+        font-size: 0.9rem !important;
+    }
+}
+
+/* Hide Streamlit branding */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #00ff88, #00b4ff);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #00b4ff, #00ff88);
+}

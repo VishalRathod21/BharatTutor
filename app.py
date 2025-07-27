@@ -26,132 +26,310 @@ if 'quiz_generator' not in st.session_state:
 # Page configuration
 st.set_page_config(
     page_title="AI Tutor for Indian Students",
-    page_icon="📚",
+    page_icon="🎓",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Main title and description
-st.title("📚 AI Tutor for Indian Students")
-st.markdown("*Your personalized NCERT curriculum assistant powered by AI*")
+# Load custom CSS
+def load_css():
+    with open('styles.css') as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-# Sidebar for navigation and settings
+load_css()
+
+# Main title and description with enhanced styling
+st.markdown("""
+<div style="text-align: center; margin-bottom: 2rem;">
+    <h1>🎓 AI Tutor for Indian Students</h1>
+    <p style="font-size: 1.2rem; color: #b0b0b0; font-weight: 300;">
+        Your personalized NCERT curriculum assistant powered by advanced AI
+    </p>
+    <div style="width: 100px; height: 3px; background: linear-gradient(45deg, #00ff88, #00b4ff); margin: 1rem auto; border-radius: 2px;"></div>
+</div>
+""", unsafe_allow_html=True)
+
+# Enhanced sidebar with modern styling
 with st.sidebar:
-    st.header("🎯 Features")
+    st.markdown("""
+    <div style="text-align: center; margin-bottom: 2rem;">
+        <h2 style="color: #00ff88; margin-bottom: 0.5rem;">🎯 Learning Hub</h2>
+        <div style="width: 50px; height: 2px; background: linear-gradient(45deg, #00ff88, #00b4ff); margin: 0 auto; border-radius: 1px;"></div>
+    </div>
+    """, unsafe_allow_html=True)
     
+    # Feature selection with enhanced styling
+    st.markdown("### 🚀 Choose Feature")
     feature = st.selectbox(
-        "Choose a feature:",
-        ["Ask Doubts", "Explain Topic", "Generate Quiz", "Homework Helper"]
+        "Select learning mode:",
+        ["Ask Doubts", "Explain Topic", "Generate Quiz", "Homework Helper"],
+        help="Choose what you'd like to do today"
     )
     
-    st.header("📖 Subject & Class")
+    st.markdown("---")
     
-    class_level = st.selectbox(
-        "Select Class:",
-        ["Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Class 11", "Class 12"]
-    )
+    # Academic settings
+    st.markdown("### 📚 Academic Settings")
     
-    subject = st.selectbox(
-        "Select Subject:",
-        ["Mathematics", "Science", "Social Science", "English", "Hindi"]
-    )
+    col1, col2 = st.columns(2)
+    with col1:
+        class_level = st.selectbox(
+            "Class:",
+            ["Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Class 11", "Class 12"],
+            help="Select your current class"
+        )
     
-    if st.button("Clear Conversation"):
-        st.session_state.conversation_memory.clear()
-        st.success("Conversation cleared!")
-        st.rerun()
+    with col2:
+        subject = st.selectbox(
+            "Subject:",
+            ["Mathematics", "Science", "Social Science", "English", "Hindi"],
+            help="Choose the subject you need help with"
+        )
+    
+    st.markdown("---")
+    
+    # Action buttons
+    st.markdown("### ⚡ Quick Actions")
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("🗑️ Clear Chat", help="Clear conversation history"):
+            st.session_state.conversation_memory.clear()
+            st.success("Conversation cleared!")
+            st.rerun()
+    
+    with col2:
+        if st.button("📊 Stats", help="View learning statistics"):
+            stats = st.session_state.conversation_memory.get_statistics()
+            if stats['total_conversations'] > 0:
+                st.json(stats)
+            else:
+                st.info("No conversations yet!")
+    
+    # Progress indicator
+    st.markdown("---")
+    st.markdown("### 📈 Your Progress")
+    
+    total_conversations = len(st.session_state.conversation_memory.get_history())
+    if total_conversations > 0:
+        st.metric("Questions Asked", total_conversations)
+        
+        # Subject breakdown
+        stats = st.session_state.conversation_memory.get_statistics()
+        if 'subjects_used' in stats:
+            most_active = stats.get('most_active_subject', 'None')
+            st.metric("Favorite Subject", most_active)
+    else:
+        st.info("Start learning to see your progress!")
 
-# Main content area
+# Main content area with modern styling
 if feature == "Ask Doubts":
-    st.header("❓ Ask Your Doubts")
-    st.markdown("Ask any question from your NCERT syllabus and get detailed explanations!")
+    # Feature header with enhanced styling
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, #2a2a2a, #1a1a1a); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #333;">
+        <h2 style="color: #00ff88; margin-bottom: 0.5rem; display: flex; align-items: center;">
+            ❓ Ask Your Doubts
+        </h2>
+        <p style="color: #b0b0b0; margin: 0; font-size: 1.1rem;">
+            Get instant, detailed explanations for any question from your NCERT syllabus
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
     
-    # Display conversation history
-    if st.session_state.conversation_memory.get_history():
-        st.subheader("Previous Conversations:")
-        for entry in st.session_state.conversation_memory.get_history()[-5:]:  # Show last 5
-            with st.expander(f"Q: {entry['question'][:50]}..."):
-                st.write(f"**Question:** {entry['question']}")
-                st.write(f"**Answer:** {entry['answer']}")
-                st.write(f"**Subject:** {entry.get('subject', 'N/A')} | **Class:** {entry.get('class', 'N/A')}")
+    # Create tabs for better organization
+    tab1, tab2 = st.tabs(["💬 Ask Question", "📚 Recent Conversations"])
     
-    # Question input
-    question = st.text_area(
-        "Enter your question:",
-        placeholder="e.g., Explain photosynthesis process in plants",
-        height=100
-    )
-    
-    if st.button("Get Answer", type="primary"):
-        if question:
-            with st.spinner("Generating answer..."):
-                try:
-                    # Get relevant context from knowledge base
-                    context = st.session_state.knowledge_base.get_relevant_content(
-                        question, subject, class_level
-                    )
-                    
-                    # Generate answer using Gemini
-                    answer = st.session_state.gemini_client.answer_question(
-                        question, context, subject, class_level
-                    )
-                    
-                    # Store in conversation memory
-                    st.session_state.conversation_memory.add_conversation(
-                        question, answer, subject, class_level
-                    )
-                    
-                    # Display answer
-                    st.success("Answer generated!")
-                    st.markdown("### 💡 Answer:")
-                    st.write(answer)
-                    
-                except Exception as e:
-                    st.error(f"Error generating answer: {str(e)}")
+    with tab2:
+        if st.session_state.conversation_memory.get_history():
+            st.markdown("### 🕒 Your Learning History")
+            
+            # Display conversation history with enhanced styling
+            for i, entry in enumerate(st.session_state.conversation_memory.get_history()[-5:][::-1]):  # Show last 5, newest first
+                with st.expander(f"Q{len(st.session_state.conversation_memory.get_history())-i}: {entry['question'][:60]}{'...' if len(entry['question']) > 60 else ''}"):
+                    col1, col2 = st.columns([3, 1])
+                    with col1:
+                        st.markdown(f"**🤔 Question:**")
+                        st.write(entry['question'])
+                        st.markdown(f"**💡 Answer:**")
+                        st.write(entry['answer'])
+                    with col2:
+                        st.markdown(f"**📚 Subject:** {entry.get('subject', 'N/A')}")
+                        st.markdown(f"**🎓 Class:** {entry.get('class', 'N/A')}")
+                        st.markdown(f"**⏰ Time:** {entry.get('timestamp', 'N/A')[:16]}")
         else:
-            st.warning("Please enter a question!")
+            st.info("🌟 No previous conversations yet. Start by asking your first question!")
+    
+    with tab1:
+        st.markdown("### 🤔 What would you like to learn?")
+        
+        # Enhanced question input with tips
+        col1, col2 = st.columns([3, 1])
+        
+        with col1:
+            question = st.text_area(
+                "Enter your question:",
+                placeholder="e.g., Explain photosynthesis process in plants\nWhat is the quadratic formula?\nHow does the human digestive system work?",
+                height=120,
+                help="Ask any question related to your NCERT syllabus"
+            )
+        
+        with col2:
+            st.markdown("**💡 Tips for better answers:**")
+            st.markdown("• Be specific about the topic")
+            st.markdown("• Mention the chapter if known")
+            st.markdown("• Ask for examples if needed")
+            st.markdown("• Request step-by-step explanations")
+    
+        st.markdown("---")
+        
+        # Enhanced action button
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            if st.button("🚀 Get Answer", type="primary", use_container_width=True):
+                if question:
+                    with st.spinner("🤖 AI is thinking... Please wait"):
+                        try:
+                            # Get relevant context from knowledge base
+                            context = st.session_state.knowledge_base.get_relevant_content(
+                                question, subject, class_level
+                            )
+                            
+                            # Generate answer using Gemini
+                            answer = st.session_state.gemini_client.answer_question(
+                                question, context, subject, class_level
+                            )
+                            
+                            # Store in conversation memory
+                            st.session_state.conversation_memory.add_conversation(
+                                question, answer, subject, class_level
+                            )
+                            
+                            # Display answer with enhanced styling
+                            st.success("✅ Answer generated successfully!")
+                            
+                            # Enhanced answer display
+                            st.markdown("""
+                            <div style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); padding: 2rem; border-radius: 12px; margin: 1rem 0; border-left: 4px solid #00ff88;">
+                                <h3 style="color: #00ff88; margin-bottom: 1rem;">💡 Your Answer</h3>
+                            </div>
+                            """, unsafe_allow_html=True)
+                            
+                            st.markdown(answer)
+                            
+                            # Add feedback options
+                            st.markdown("---")
+                            col1, col2, col3 = st.columns(3)
+                            with col1:
+                                if st.button("👍 Helpful"):
+                                    st.success("Thank you for your feedback!")
+                            with col2:
+                                if st.button("👎 Not helpful"):
+                                    st.info("We'll improve! Try rephrasing your question.")
+                            with col3:
+                                if st.button("🔄 Ask follow-up"):
+                                    st.info("Feel free to ask a related question!")
+                            
+                        except Exception as e:
+                            st.error(f"❌ Error generating answer: {str(e)}")
+                            st.info("💡 Try rephrasing your question or check your internet connection.")
+                else:
+                    st.warning("⚠️ Please enter a question to get started!")
 
 elif feature == "Explain Topic":
-    st.header("📖 Topic Explanation")
-    st.markdown("Get detailed explanations for any chapter or topic from your NCERT syllabus!")
+    # Feature header with enhanced styling
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, #2a2a2a, #1a1a1a); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #333;">
+        <h2 style="color: #00b4ff; margin-bottom: 0.5rem; display: flex; align-items: center;">
+            📖 Topic Explanation
+        </h2>
+        <p style="color: #b0b0b0; margin: 0; font-size: 1.1rem;">
+            Get comprehensive explanations for any chapter or topic from your NCERT curriculum
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
     
-    topic = st.text_input(
-        "Enter topic or chapter name:",
-        placeholder="e.g., Periodic Table, Quadratic Equations, Mughal Empire"
-    )
+    # Input section with better layout
+    col1, col2 = st.columns([2, 1])
     
-    explanation_type = st.radio(
-        "Type of explanation:",
-        ["Summary", "Detailed", "Step-by-step"]
-    )
+    with col1:
+        st.markdown("### 📝 Enter Topic Details")
+        topic = st.text_input(
+            "Topic or chapter name:",
+            placeholder="e.g., Periodic Table, Quadratic Equations, Mughal Empire, Photosynthesis",
+            help="Enter the specific topic you want to learn about"
+        )
     
-    if st.button("Explain Topic", type="primary"):
-        if topic:
-            with st.spinner("Generating explanation..."):
-                try:
-                    # Get relevant content
-                    context = st.session_state.knowledge_base.get_relevant_content(
-                        topic, subject, class_level
-                    )
-                    
-                    # Generate explanation
-                    explanation = st.session_state.gemini_client.explain_topic(
-                        topic, context, subject, class_level, explanation_type
-                    )
-                    
-                    st.success("Explanation generated!")
-                    st.markdown("### 📚 Explanation:")
-                    st.write(explanation)
-                    
-                except Exception as e:
-                    st.error(f"Error generating explanation: {str(e)}")
-        else:
-            st.warning("Please enter a topic!")
+    with col2:
+        st.markdown("### 🎯 Explanation Style")
+        explanation_type = st.radio(
+            "Choose explanation type:",
+            ["Summary", "Detailed", "Step-by-step"],
+            help="Select how detailed you want the explanation to be"
+        )
+    
+    # Action button
+    st.markdown("---")
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        if st.button("📚 Explain Topic", type="primary", use_container_width=True):
+            if topic:
+                with st.spinner("🔍 Analyzing topic and preparing explanation..."):
+                    try:
+                        # Get relevant content
+                        context = st.session_state.knowledge_base.get_relevant_content(
+                            topic, subject, class_level
+                        )
+                        
+                        # Generate explanation
+                        explanation = st.session_state.gemini_client.explain_topic(
+                            topic, context, subject, class_level, explanation_type
+                        )
+                        
+                        st.success(f"✅ {explanation_type} explanation generated!")
+                        
+                        # Enhanced explanation display
+                        st.markdown(f"""
+                        <div style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); padding: 2rem; border-radius: 12px; margin: 1rem 0; border-left: 4px solid #00b4ff;">
+                            <h3 style="color: #00b4ff; margin-bottom: 1rem;">📚 {explanation_type} Explanation: {topic}</h3>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
+                        st.markdown(explanation)
+                        
+                        # Additional learning options
+                        st.markdown("---")
+                        st.markdown("### 🚀 Continue Learning")
+                        col1, col2, col3 = st.columns(3)
+                        with col1:
+                            if st.button("❓ Ask Question", key="topic_ask"):
+                                st.info("Switch to 'Ask Doubts' to ask specific questions about this topic!")
+                        with col2:
+                            if st.button("📝 Generate Quiz", key="topic_quiz"):
+                                st.info("Switch to 'Generate Quiz' to test your understanding!")
+                        with col3:
+                            if st.button("🔄 Related Topics", key="topic_related"):
+                                st.info("Ask for related topics in the question section!")
+                        
+                    except Exception as e:
+                        st.error(f"❌ Error generating explanation: {str(e)}")
+                        st.info("💡 Try checking your internet connection or rephrasing the topic.")
+            else:
+                st.warning("⚠️ Please enter a topic name to get started!")
 
 elif feature == "Generate Quiz":
-    st.header("📝 Quiz Generator")
-    st.markdown("Test your knowledge with AI-generated quizzes based on NCERT curriculum!")
+    # Feature header with enhanced styling
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, #2a2a2a, #1a1a1a); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #333;">
+        <h2 style="color: #ffc107; margin-bottom: 0.5rem; display: flex; align-items: center;">
+            📝 Quiz Generator
+        </h2>
+        <p style="color: #b0b0b0; margin: 0; font-size: 1.1rem;">
+            Test your knowledge with personalized AI-generated quizzes based on NCERT curriculum
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
     
+    st.markdown("### ⚙️ Quiz Configuration")
     col1, col2 = st.columns(2)
     
     with col1:
@@ -220,19 +398,36 @@ elif feature == "Generate Quiz":
             st.warning("Please enter a chapter or topic!")
 
 elif feature == "Homework Helper":
-    st.header("📝 Homework Helper")
-    st.markdown("Get step-by-step help with your homework problems!")
+    # Feature header with enhanced styling
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, #2a2a2a, #1a1a1a); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #333;">
+        <h2 style="color: #ff6b7a; margin-bottom: 0.5rem; display: flex; align-items: center;">
+            📝 Homework Helper
+        </h2>
+        <p style="color: #b0b0b0; margin: 0; font-size: 1.1rem;">
+            Get intelligent, step-by-step assistance with your homework problems
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
     
-    problem = st.text_area(
-        "Enter your homework problem:",
-        placeholder="e.g., Solve: 2x + 5 = 15",
-        height=150
-    )
+    col1, col2 = st.columns([2, 1])
     
-    help_type = st.selectbox(
-        "Type of help needed:",
-        ["Step-by-step solution", "Concept explanation", "Hint only", "Similar examples"]
-    )
+    with col1:
+        st.markdown("### 📖 Enter Your Problem")
+        problem = st.text_area(
+            "Homework problem:",
+            placeholder="e.g., Solve: 2x + 5 = 15\nFind the area of a triangle with base 8cm and height 6cm\nExplain the causes of World War I",
+            height=150,
+            help="Enter your homework question or problem statement"
+        )
+    
+    with col2:
+        st.markdown("### 🎯 Help Type")
+        help_type = st.selectbox(
+            "What kind of help do you need?",
+            ["Step-by-step solution", "Concept explanation", "Hint only", "Similar examples"],
+            help="Choose the type of assistance you prefer"
+        )
     
     if st.button("Get Help", type="primary"):
         if problem:
@@ -257,14 +452,41 @@ elif feature == "Homework Helper":
         else:
             st.warning("Please enter your homework problem!")
 
-# Footer
+# Enhanced Footer
 st.markdown("---")
-st.markdown(
-    """
-    <div style='text-align: center'>
-        <p>🤖 Powered by Gemini AI | 📚 Based on NCERT Curriculum</p>
-        <p><em>Making quality education accessible to all Indian students</em></p>
+st.markdown("""
+<div style="background: linear-gradient(135deg, #1a1a1a, #0f0f0f); padding: 3rem 2rem; border-radius: 12px; margin-top: 3rem; border: 1px solid #333; text-align: center;">
+    <div style="margin-bottom: 2rem;">
+        <h3 style="color: #00ff88; margin-bottom: 1rem; font-size: 1.5rem;">🎓 AI Tutor for Indian Students</h3>
+        <p style="color: #b0b0b0; font-size: 1.1rem; margin: 0;">Empowering education through artificial intelligence</p>
     </div>
-    """,
-    unsafe_allow_html=True
-)
+    
+    <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
+        <div style="color: #00ff88;">
+            <strong>🤖 Powered by</strong><br>
+            <span style="color: #b0b0b0;">Gemini AI</span>
+        </div>
+        <div style="color: #00b4ff;">
+            <strong>📚 Curriculum</strong><br>
+            <span style="color: #b0b0b0;">NCERT Based</span>
+        </div>
+        <div style="color: #ffc107;">
+            <strong>🎯 Coverage</strong><br>
+            <span style="color: #b0b0b0;">Classes 6-12</span>
+        </div>
+        <div style="color: #ff6b7a;">
+            <strong>📖 Subjects</strong><br>
+            <span style="color: #b0b0b0;">All Major Subjects</span>
+        </div>
+    </div>
+    
+    <div style="border-top: 1px solid #333; padding-top: 1.5rem;">
+        <p style="color: #888; font-size: 0.9rem; margin: 0;">
+            <em>Making quality education accessible to all Indian students</em>
+        </p>
+        <p style="color: #666; font-size: 0.8rem; margin-top: 0.5rem;">
+            Built with ❤️ for the future of education in India
+        </p>
+    </div>
+</div>
+""", unsafe_allow_html=True)
