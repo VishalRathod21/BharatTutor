@@ -38,106 +38,135 @@ def load_css():
 
 load_css()
 
-# Main title and description with enhanced styling
+# Modern header with improved design
 st.markdown("""
-<div style="text-align: center; margin-bottom: 2rem;">
-    <h1>🇮🇳 Bharat Tutor</h1>
-    <p style="font-size: 1.2rem; color: #ffffff; font-weight: 300;">
-        Your personalized NCERT curriculum assistant powered by advanced AI
+<div style="text-align: center; margin-bottom: 3rem; padding: 3rem 2rem; background: linear-gradient(135deg, #111111, #000000); border-radius: 20px; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);">
+    <div style="font-size: 4rem; margin-bottom: 1rem;">🇮🇳</div>
+    <h1 style="color: #00ff88; font-size: 3rem; font-weight: 800; margin-bottom: 1rem; text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);">Bharat Tutor</h1>
+    <p style="font-size: 1.3rem; color: #bbbbbb; font-weight: 300; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+        Your intelligent NCERT curriculum assistant powered by advanced AI technology
     </p>
-    <div style="width: 100px; height: 3px; background: linear-gradient(45deg, #00ff88, #00b4ff); margin: 1rem auto; border-radius: 2px;"></div>
+    <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <span style="background: linear-gradient(45deg, #00ff88, #00b4ff); color: #000; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">AI Powered</span>
+        <span style="background: linear-gradient(45deg, #00b4ff, #ffc107); color: #000; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">NCERT Based</span>
+        <span style="background: linear-gradient(45deg, #ffc107, #ff6b7a); color: #000; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">Classes 6-12</span>
+    </div>
 </div>
 """, unsafe_allow_html=True)
 
-# Enhanced sidebar with modern styling
+# Modern sidebar with enhanced design
 with st.sidebar:
     st.markdown("""
-    <div style="text-align: center; margin-bottom: 2rem;">
-        <h2 style="color: #00ff88; margin-bottom: 0.5rem;">🎯 Learning Hub</h2>
-        <div style="width: 50px; height: 2px; background: linear-gradient(45deg, #00ff88, #00b4ff); margin: 0 auto; border-radius: 1px;"></div>
+    <div style="text-align: center; margin-bottom: 3rem; padding: 2rem 1rem; background: linear-gradient(135deg, #111111, #222222); border-radius: 15px; border: 1px solid #333;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">🇮🇳</div>
+        <h2 style="color: #00ff88; margin-bottom: 0.5rem; font-size: 1.3rem; font-weight: 700;">Bharat Tutor</h2>
+        <p style="color: #bbbbbb; font-size: 0.9rem; margin: 0;">AI Learning Assistant</p>
+        <div style="width: 60px; height: 3px; background: linear-gradient(45deg, #00ff88, #00b4ff); margin: 1rem auto; border-radius: 2px;"></div>
     </div>
     """, unsafe_allow_html=True)
     
-    # Feature selection with enhanced styling
-    st.markdown("### 🚀 Choose Feature")
+    # Feature selection with modern cards
+    st.markdown("""
+    <div style="margin-bottom: 2rem;">
+        <h3 style="color: #00ff88; margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">🚀 Learning Mode</h3>
+    </div>
+    """, unsafe_allow_html=True)
+    
     feature = st.selectbox(
-        "Select learning mode:",
+        "Select Learning Mode",
         ["Ask Doubts", "Explain Topic", "Generate Quiz", "Homework Helper"],
-        help="Choose what you'd like to do today"
+        help="Choose what you'd like to do today",
+        label_visibility="collapsed"
     )
     
-    st.markdown("---")
+    st.markdown("<br>", unsafe_allow_html=True)
     
-    # Academic settings
-    st.markdown("### 📚 Academic Settings")
+    # Academic settings with better layout
+    st.markdown("""
+    <div style="margin-bottom: 1.5rem;">
+        <h3 style="color: #00b4ff; margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">📚 Study Settings</h3>
+    </div>
+    """, unsafe_allow_html=True)
     
-    col1, col2 = st.columns(2)
-    with col1:
-        class_level = st.selectbox(
-            "Class:",
-            ["Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Class 11", "Class 12"],
-            help="Select your current class"
-        )
+    class_level = st.selectbox(
+        "Class Level:",
+        ["Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Class 11", "Class 12"],
+        help="Select your current class"
+    )
     
-    with col2:
-        subject = st.selectbox(
-            "Subject:",
-            ["Mathematics", "Science", "Social Science", "English", "Hindi"],
-            help="Choose the subject you need help with"
-        )
+    subject = st.selectbox(
+        "Subject:",
+        ["Mathematics", "Science", "Social Science", "English", "Hindi"],
+        help="Choose the subject you need help with"
+    )
     
-    st.markdown("---")
+    st.markdown("<br>", unsafe_allow_html=True)
     
-    # Action buttons
-    st.markdown("### ⚡ Quick Actions")
+    # Quick actions with modern styling
+    st.markdown("""
+    <div style="margin-bottom: 1.5rem;">
+        <h3 style="color: #ffc107; margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">⚡ Quick Actions</h3>
+    </div>
+    """, unsafe_allow_html=True)
     
-    col1, col2 = st.columns(2)
-    with col1:
-        if st.button("🗑️ Clear Chat", help="Clear conversation history"):
-            st.session_state.conversation_memory.clear()
-            st.success("Conversation cleared!")
-            st.rerun()
+    if st.button("🗑️ Clear History", help="Clear conversation history", use_container_width=True):
+        st.session_state.conversation_memory.clear()
+        st.success("History cleared!")
+        st.rerun()
     
-    with col2:
-        if st.button("📊 Stats", help="View learning statistics"):
-            stats = st.session_state.conversation_memory.get_statistics()
-            if stats['total_conversations'] > 0:
-                st.json(stats)
-            else:
-                st.info("No conversations yet!")
+    if st.button("📊 View Stats", help="View learning statistics", use_container_width=True):
+        stats = st.session_state.conversation_memory.get_statistics()
+        if stats['total_conversations'] > 0:
+            st.json(stats)
+        else:
+            st.info("No conversations yet!")
     
-    # Progress indicator
-    st.markdown("---")
-    st.markdown("### 📈 Your Progress")
+    # Progress section with metrics
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("""
+    <div style="margin-bottom: 1.5rem;">
+        <h3 style="color: #ff6b7a; margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">📈 Your Progress</h3>
+    </div>
+    """, unsafe_allow_html=True)
     
     total_conversations = len(st.session_state.conversation_memory.get_history())
     if total_conversations > 0:
-        st.metric("Questions Asked", total_conversations)
+        col1, col2 = st.columns(2)
+        with col1:
+            st.metric("Questions", total_conversations, delta=None)
         
-        # Subject breakdown
-        stats = st.session_state.conversation_memory.get_statistics()
-        if 'subjects_used' in stats:
-            most_active = stats.get('most_active_subject', 'None')
-            st.metric("Favorite Subject", most_active)
+        with col2:
+            stats = st.session_state.conversation_memory.get_statistics()
+            if 'subjects_used' in stats:
+                most_active = stats.get('most_active_subject', 'None')
+                if len(most_active) > 8:
+                    most_active = most_active[:8] + "..."
+                st.metric("Top Subject", most_active)
     else:
-        st.info("Start learning to see your progress!")
+        st.markdown("""
+        <div style="text-align: center; padding: 1.5rem; background: #111111; border-radius: 10px; border: 1px solid #333;">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌟</div>
+            <p style="color: #bbbbbb; margin: 0; font-size: 0.9rem;">Start learning to track progress!</p>
+        </div>
+        """, unsafe_allow_html=True)
 
 # Main content area with modern styling
 if feature == "Ask Doubts":
-    # Feature header with enhanced styling
+    # Modern feature header
     st.markdown("""
-    <div style="background: #000000; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #333;">
-        <h2 style="color: #00ff88; margin-bottom: 0.5rem; display: flex; align-items: center;">
-            ❓ Ask Your Doubts
-        </h2>
-        <p style="color: #ffffff; margin: 0; font-size: 1.1rem;">
-            Get instant, detailed explanations for any question from your NCERT syllabus
+    <div style="background: linear-gradient(135deg, #111111, #000000); padding: 2.5rem; border-radius: 20px; margin-bottom: 2rem; border: 1px solid #333; box-shadow: 0 8px 25px rgba(0, 255, 136, 0.1);">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+            <div style="font-size: 2.5rem;">❓</div>
+            <h2 style="color: #00ff88; margin: 0; font-size: 2rem; font-weight: 700;">Ask Your Doubts</h2>
+        </div>
+        <p style="color: #bbbbbb; margin: 0; font-size: 1.2rem; line-height: 1.6;">
+            Get instant, detailed explanations for any question from your NCERT syllabus with AI-powered assistance
         </p>
     </div>
     """, unsafe_allow_html=True)
     
-    # Create tabs for better organization
-    tab1, tab2 = st.tabs(["💬 Ask Question", "📚 Recent Conversations"])
+    # Create modern tabs for better organization
+    tab1, tab2 = st.tabs(["💬 Ask Question", "📚 Conversation History"])
     
     with tab2:
         if st.session_state.conversation_memory.get_history():
@@ -209,8 +238,8 @@ if feature == "Ask Doubts":
                             
                             # Enhanced answer display
                             st.markdown("""
-                            <div style="background: #000000; padding: 2rem; border-radius: 12px; margin: 1rem 0; border-left: 4px solid #00ff88;">
-                                <h3 style="color: #00ff88; margin-bottom: 1rem;">💡 Your Answer</h3>
+                            <div style="background: linear-gradient(135deg, #111111, #000000); padding: 2.5rem; border-radius: 15px; margin: 1.5rem 0; border-left: 5px solid #00ff88; box-shadow: 0 5px 15px rgba(0, 255, 136, 0.1);">
+                                <h3 style="color: #00ff88; margin-bottom: 1.5rem; font-size: 1.4rem; font-weight: 600;">💡 Your Answer</h3>
                             </div>
                             """, unsafe_allow_html=True)
                             
@@ -236,14 +265,15 @@ if feature == "Ask Doubts":
                     st.warning("⚠️ Please enter a question to get started!")
 
 elif feature == "Explain Topic":
-    # Feature header with enhanced styling
+    # Modern feature header
     st.markdown("""
-    <div style="background: #000000; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #333;">
-        <h2 style="color: #00b4ff; margin-bottom: 0.5rem; display: flex; align-items: center;">
-            📖 Topic Explanation
-        </h2>
-        <p style="color: #ffffff; margin: 0; font-size: 1.1rem;">
-            Get comprehensive explanations for any chapter or topic from your NCERT curriculum
+    <div style="background: linear-gradient(135deg, #111111, #000000); padding: 2.5rem; border-radius: 20px; margin-bottom: 2rem; border: 1px solid #333; box-shadow: 0 8px 25px rgba(0, 180, 255, 0.1);">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+            <div style="font-size: 2.5rem;">📖</div>
+            <h2 style="color: #00b4ff; margin: 0; font-size: 2rem; font-weight: 700;">Topic Explanation</h2>
+        </div>
+        <p style="color: #bbbbbb; margin: 0; font-size: 1.2rem; line-height: 1.6;">
+            Get comprehensive explanations for any chapter or topic from your NCERT curriculum with detailed insights
         </p>
     </div>
     """, unsafe_allow_html=True)
@@ -289,8 +319,8 @@ elif feature == "Explain Topic":
                         
                         # Enhanced explanation display
                         st.markdown(f"""
-                        <div style="background: #000000; padding: 2rem; border-radius: 12px; margin: 1rem 0; border-left: 4px solid #00b4ff;">
-                            <h3 style="color: #00b4ff; margin-bottom: 1rem;">📚 {explanation_type} Explanation: {topic}</h3>
+                        <div style="background: linear-gradient(135deg, #111111, #000000); padding: 2.5rem; border-radius: 15px; margin: 1.5rem 0; border-left: 5px solid #00b4ff; box-shadow: 0 5px 15px rgba(0, 180, 255, 0.1);">
+                            <h3 style="color: #00b4ff; margin-bottom: 1.5rem; font-size: 1.4rem; font-weight: 600;">📚 {explanation_type} Explanation: {topic}</h3>
                         </div>
                         """, unsafe_allow_html=True)
                         
@@ -317,14 +347,15 @@ elif feature == "Explain Topic":
                 st.warning("⚠️ Please enter a topic name to get started!")
 
 elif feature == "Generate Quiz":
-    # Feature header with enhanced styling
+    # Modern feature header
     st.markdown("""
-    <div style="background: #000000; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #333;">
-        <h2 style="color: #ffc107; margin-bottom: 0.5rem; display: flex; align-items: center;">
-            📝 Quiz Generator
-        </h2>
-        <p style="color: #ffffff; margin: 0; font-size: 1.1rem;">
-            Test your knowledge with personalized AI-generated quizzes based on NCERT curriculum
+    <div style="background: linear-gradient(135deg, #111111, #000000); padding: 2.5rem; border-radius: 20px; margin-bottom: 2rem; border: 1px solid #333; box-shadow: 0 8px 25px rgba(255, 193, 7, 0.1);">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+            <div style="font-size: 2.5rem;">📝</div>
+            <h2 style="color: #ffc107; margin: 0; font-size: 2rem; font-weight: 700;">Quiz Generator</h2>
+        </div>
+        <p style="color: #bbbbbb; margin: 0; font-size: 1.2rem; line-height: 1.6;">
+            Test your knowledge with personalized AI-generated quizzes based on NCERT curriculum standards
         </p>
     </div>
     """, unsafe_allow_html=True)
@@ -398,14 +429,15 @@ elif feature == "Generate Quiz":
             st.warning("Please enter a chapter or topic!")
 
 elif feature == "Homework Helper":
-    # Feature header with enhanced styling
+    # Modern feature header
     st.markdown("""
-    <div style="background: #000000; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #333;">
-        <h2 style="color: #ff6b7a; margin-bottom: 0.5rem; display: flex; align-items: center;">
-            📝 Homework Helper
-        </h2>
-        <p style="color: #ffffff; margin: 0; font-size: 1.1rem;">
-            Get intelligent, step-by-step assistance with your homework problems
+    <div style="background: linear-gradient(135deg, #111111, #000000); padding: 2.5rem; border-radius: 20px; margin-bottom: 2rem; border: 1px solid #333; box-shadow: 0 8px 25px rgba(255, 107, 122, 0.1);">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+            <div style="font-size: 2.5rem;">🎯</div>
+            <h2 style="color: #ff6b7a; margin: 0; font-size: 2rem; font-weight: 700;">Homework Helper</h2>
+        </div>
+        <p style="color: #bbbbbb; margin: 0; font-size: 1.2rem; line-height: 1.6;">
+            Get intelligent, step-by-step assistance with your homework problems and assignments
         </p>
     </div>
     """, unsafe_allow_html=True)
@@ -452,60 +484,67 @@ elif feature == "Homework Helper":
         else:
             st.warning("Please enter your homework problem!")
 
-# Enhanced Footer
+# Modern Footer
 st.markdown("---")
 
-# Create footer using Streamlit native components for better rendering
 with st.container():
+    # Main footer header
     st.markdown("""
-    <div style="background: #000000; padding: 2rem; border-radius: 12px; margin-top: 2rem; border: 1px solid #333; text-align: center;">
-        <h3 style="color: #00ff88; margin-bottom: 1rem; font-size: 1.5rem;">🇮🇳 Bharat Tutor</h3>
-        <p style="color: #ffffff; font-size: 1.1rem; margin-bottom: 2rem;">Empowering education through artificial intelligence</p>
+    <div style="background: linear-gradient(135deg, #111111, #000000); padding: 3rem 2rem; border-radius: 20px; margin-top: 3rem; border: 1px solid #333; text-align: center; box-shadow: 0 10px 30px rgba(0, 255, 136, 0.05);">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">🇮🇳</div>
+        <h3 style="color: #00ff88; font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">Bharat Tutor</h3>
+        <p style="color: #bbbbbb; font-size: 1.2rem; margin-bottom: 2rem;">Empowering education through artificial intelligence</p>
     </div>
     """, unsafe_allow_html=True)
     
-    # Use Streamlit columns for better layout
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    # Feature highlights using columns
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
         st.markdown("""
-        <div style="text-align: center; padding: 1rem; background: #000000; border-radius: 8px; border: 1px solid #333;">
-            <div style="color: #00ff88; font-weight: bold; margin-bottom: 0.5rem;">🤖 Powered by</div>
-            <div style="color: #ffffff;">Gemini AI</div>
+        <div style="text-align: center; padding: 2rem 1rem; background: linear-gradient(135deg, #111111, #000000); border-radius: 15px; border: 1px solid #333; box-shadow: 0 5px 15px rgba(0, 255, 136, 0.1);">
+            <div style="font-size: 2rem; margin-bottom: 1rem;">🤖</div>
+            <div style="color: #00ff88; font-weight: 700; margin-bottom: 0.5rem; font-size: 1rem;">AI Powered</div>
+            <div style="color: #bbbbbb; font-size: 0.9rem;">Gemini AI</div>
         </div>
         """, unsafe_allow_html=True)
     
     with col2:
         st.markdown("""
-        <div style="text-align: center; padding: 1rem; background: #000000; border-radius: 8px; border: 1px solid #333;">
-            <div style="color: #00b4ff; font-weight: bold; margin-bottom: 0.5rem;">📚 Curriculum</div>
-            <div style="color: #ffffff;">NCERT Based</div>
+        <div style="text-align: center; padding: 2rem 1rem; background: linear-gradient(135deg, #111111, #000000); border-radius: 15px; border: 1px solid #333; box-shadow: 0 5px 15px rgba(0, 180, 255, 0.1);">
+            <div style="font-size: 2rem; margin-bottom: 1rem;">📚</div>
+            <div style="color: #00b4ff; font-weight: 700; margin-bottom: 0.5rem; font-size: 1rem;">Curriculum</div>
+            <div style="color: #bbbbbb; font-size: 0.9rem;">NCERT Based</div>
         </div>
         """, unsafe_allow_html=True)
     
     with col3:
         st.markdown("""
-        <div style="text-align: center; padding: 1rem; background: #000000; border-radius: 8px; border: 1px solid #333;">
-            <div style="color: #ffc107; font-weight: bold; margin-bottom: 0.5rem;">🎯 Coverage</div>
-            <div style="color: #ffffff;">Classes 6-12</div>
+        <div style="text-align: center; padding: 2rem 1rem; background: linear-gradient(135deg, #111111, #000000); border-radius: 15px; border: 1px solid #333; box-shadow: 0 5px 15px rgba(255, 193, 7, 0.1);">
+            <div style="font-size: 2rem; margin-bottom: 1rem;">🎯</div>
+            <div style="color: #ffc107; font-weight: 700; margin-bottom: 0.5rem; font-size: 1rem;">Coverage</div>
+            <div style="color: #bbbbbb; font-size: 0.9rem;">Classes 6-12</div>
         </div>
         """, unsafe_allow_html=True)
     
     with col4:
         st.markdown("""
-        <div style="text-align: center; padding: 1rem; background: #000000; border-radius: 8px; border: 1px solid #333;">
-            <div style="color: #ff6b7a; font-weight: bold; margin-bottom: 0.5rem;">📖 Subjects</div>
-            <div style="color: #ffffff;">All Major Subjects</div>
+        <div style="text-align: center; padding: 2rem 1rem; background: linear-gradient(135deg, #111111, #000000); border-radius: 15px; border: 1px solid #333; box-shadow: 0 5px 15px rgba(255, 107, 122, 0.1);">
+            <div style="font-size: 2rem; margin-bottom: 1rem;">📖</div>
+            <div style="color: #ff6b7a; font-weight: 700; margin-bottom: 0.5rem; font-size: 1rem;">Subjects</div>
+            <div style="color: #bbbbbb; font-size: 0.9rem;">All Major</div>
         </div>
         """, unsafe_allow_html=True)
     
-    # Final footer text
+    # Final message with modern styling
     st.markdown("""
-    <div style="background: #000000; padding: 1.5rem; border-radius: 8px; margin-top: 1rem; border: 1px solid #333; text-align: center;">
-        <p style="color: #ffffff; font-size: 0.9rem; margin: 0;">
+    <div style="background: linear-gradient(135deg, #111111, #000000); padding: 2rem; border-radius: 15px; margin-top: 2rem; border: 1px solid #333; text-align: center; box-shadow: 0 5px 15px rgba(0, 255, 136, 0.05);">
+        <p style="color: #bbbbbb; font-size: 1rem; margin: 0; margin-bottom: 0.5rem;">
             <em>Making quality education accessible to all Indian students</em>
         </p>
-        <p style="color: #ffffff; font-size: 0.8rem; margin-top: 0.5rem;">
+        <p style="color: #888888; font-size: 0.9rem; margin: 0;">
             Built with ❤️ for the future of education in India
         </p>
     </div>

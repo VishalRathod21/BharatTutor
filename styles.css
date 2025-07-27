@@ -2,7 +2,7 @@
 
 /* Global styles */
 .stApp {
-    background: #000000 !important;
+    background: linear-gradient(135deg, #000000 0%, #111111 100%) !important;
     color: #ffffff !important;
     font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -44,9 +44,14 @@ h1 {
 
 /* Sidebar styling */
 .css-1d391kg {
-    background: #000000 !important;
-    border-right: 1px solid #333;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(180deg, #111111 0%, #000000 100%) !important;
+    border-right: 2px solid #333;
+    box-shadow: 4px 0 20px rgba(0, 255, 136, 0.1);
+}
+
+.sidebar .sidebar-content {
+    background: transparent;
+    padding: 1rem;
 }
 
 .sidebar .sidebar-content {
@@ -86,14 +91,16 @@ h1 {
     background: linear-gradient(45deg, #00ff88, #00b4ff) !important;
     color: #000000 !important;
     border: none !important;
-    border-radius: 8px !important;
-    padding: 0.75rem 2rem !important;
-    font-weight: 600 !important;
+    border-radius: 12px !important;
+    padding: 0.8rem 2.5rem !important;
+    font-weight: 700 !important;
     font-size: 1rem !important;
-    transition: all 0.3s ease !important;
-    box-shadow: 0 4px 15px rgba(0, 255, 136, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 6px 20px rgba(0, 255, 136, 0.3);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
+    position: relative;
+    overflow: hidden;
 }
 
 .stButton > button:hover {
