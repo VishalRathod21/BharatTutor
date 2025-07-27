@@ -1,12 +1,14 @@
-# AI Tutor for Indian Students
+# Bharat Tutor
 
 ## Overview
 
-This is an AI-powered tutoring application specifically designed for Indian students following the NCERT curriculum. The application provides personalized learning assistance through doubt-solving, topic explanations, quiz generation, and homework help across multiple subjects and class levels.
+Bharat Tutor is an AI-powered tutoring application specifically designed for Indian students following the NCERT curriculum. The application provides personalized learning assistance through doubt-solving, topic explanations, quiz generation, and homework help across multiple subjects and class levels.
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+App name: Bharat Tutor (changed from AI Tutor for Indian Students)
+UI theme: Pure black dark theme with white text for maximum contrast and readability.
 
 ## System Architecture
 

@@ -2,8 +2,8 @@
 
 /* Global styles */
 .stApp {
-    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
-    color: #ffffff;
+    background: #000000 !important;
+    color: #ffffff !important;
     font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -44,7 +44,7 @@ h1 {
 
 /* Sidebar styling */
 .css-1d391kg {
-    background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
+    background: #000000 !important;
     border-right: 1px solid #333;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
 }
@@ -65,7 +65,7 @@ h1 {
 
 /* Selectbox styling */
 .stSelectbox > div > div {
-    background: #2a2a2a !important;
+    background: #000000 !important;
     border: 1px solid #444 !important;
     border-radius: 8px !important;
     color: #ffffff !important;
@@ -119,7 +119,7 @@ h1 {
 
 /* Text input styling */
 .stTextInput > div > div > input {
-    background: #2a2a2a !important;
+    background: #000000 !important;
     border: 1px solid #444 !important;
     border-radius: 8px !important;
     color: #ffffff !important;
@@ -136,7 +136,7 @@ h1 {
 
 /* Text area styling */
 .stTextArea > div > div > textarea {
-    background: #2a2a2a !important;
+    background: #000000 !important;
     border: 1px solid #444 !important;
     border-radius: 8px !important;
     color: #ffffff !important;
@@ -154,7 +154,7 @@ h1 {
 
 /* Radio button styling */
 .stRadio > div {
-    background: #2a2a2a !important;
+    background: #000000 !important;
     border-radius: 8px !important;
     padding: 1rem !important;
     border: 1px solid #444;
@@ -165,7 +165,7 @@ h1 {
 }
 
 .stRadio > div > div > label {
-    color: #b0b0b0 !important;
+    color: #ffffff !important;
     transition: color 0.3s ease;
 }
 
@@ -213,7 +213,7 @@ h1 {
 
 /* Expander styling */
 .streamlit-expanderHeader {
-    background: #2a2a2a !important;
+    background: #000000 !important;
     border: 1px solid #444 !important;
     border-radius: 8px !important;
     color: #ffffff !important;
@@ -226,7 +226,7 @@ h1 {
 }
 
 .streamlit-expanderContent {
-    background: #1a1a1a !important;
+    background: #000000 !important;
     border: 1px solid #444 !important;
     border-top: none !important;
     border-radius: 0 0 8px 8px !important;
@@ -264,7 +264,7 @@ h2, h3 {
 
 /* Footer styling */
 .footer {
-    background: linear-gradient(90deg, #1a1a1a, #0f0f0f) !important;
+    background: #000000 !important;
     border-top: 1px solid #333 !important;
     margin-top: 2rem !important;
     padding: 2rem !important;
@@ -309,7 +309,7 @@ header {visibility: hidden;}
 }
 
 ::-webkit-scrollbar-track {
-    background: #1a1a1a;
+    background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {

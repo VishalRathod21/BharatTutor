@@ -25,8 +25,8 @@ if 'quiz_generator' not in st.session_state:
 
 # Page configuration
 st.set_page_config(
-    page_title="AI Tutor for Indian Students",
-    page_icon="🎓",
+    page_title="Bharat Tutor",
+    page_icon="🇮🇳",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -41,8 +41,8 @@ load_css()
 # Main title and description with enhanced styling
 st.markdown("""
 <div style="text-align: center; margin-bottom: 2rem;">
-    <h1>🎓 AI Tutor for Indian Students</h1>
-    <p style="font-size: 1.2rem; color: #b0b0b0; font-weight: 300;">
+    <h1>🇮🇳 Bharat Tutor</h1>
+    <p style="font-size: 1.2rem; color: #ffffff; font-weight: 300;">
         Your personalized NCERT curriculum assistant powered by advanced AI
     </p>
     <div style="width: 100px; height: 3px; background: linear-gradient(45deg, #00ff88, #00b4ff); margin: 1rem auto; border-radius: 2px;"></div>
@@ -126,11 +126,11 @@ with st.sidebar:
 if feature == "Ask Doubts":
     # Feature header with enhanced styling
     st.markdown("""
-    <div style="background: linear-gradient(135deg, #2a2a2a, #1a1a1a); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #333;">
+    <div style="background: #000000; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #333;">
         <h2 style="color: #00ff88; margin-bottom: 0.5rem; display: flex; align-items: center;">
             ❓ Ask Your Doubts
         </h2>
-        <p style="color: #b0b0b0; margin: 0; font-size: 1.1rem;">
+        <p style="color: #ffffff; margin: 0; font-size: 1.1rem;">
             Get instant, detailed explanations for any question from your NCERT syllabus
         </p>
     </div>
@@ -209,7 +209,7 @@ if feature == "Ask Doubts":
                             
                             # Enhanced answer display
                             st.markdown("""
-                            <div style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); padding: 2rem; border-radius: 12px; margin: 1rem 0; border-left: 4px solid #00ff88;">
+                            <div style="background: #000000; padding: 2rem; border-radius: 12px; margin: 1rem 0; border-left: 4px solid #00ff88;">
                                 <h3 style="color: #00ff88; margin-bottom: 1rem;">💡 Your Answer</h3>
                             </div>
                             """, unsafe_allow_html=True)
@@ -238,11 +238,11 @@ if feature == "Ask Doubts":
 elif feature == "Explain Topic":
     # Feature header with enhanced styling
     st.markdown("""
-    <div style="background: linear-gradient(135deg, #2a2a2a, #1a1a1a); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #333;">
+    <div style="background: #000000; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #333;">
         <h2 style="color: #00b4ff; margin-bottom: 0.5rem; display: flex; align-items: center;">
             📖 Topic Explanation
         </h2>
-        <p style="color: #b0b0b0; margin: 0; font-size: 1.1rem;">
+        <p style="color: #ffffff; margin: 0; font-size: 1.1rem;">
             Get comprehensive explanations for any chapter or topic from your NCERT curriculum
         </p>
     </div>
@@ -289,7 +289,7 @@ elif feature == "Explain Topic":
                         
                         # Enhanced explanation display
                         st.markdown(f"""
-                        <div style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); padding: 2rem; border-radius: 12px; margin: 1rem 0; border-left: 4px solid #00b4ff;">
+                        <div style="background: #000000; padding: 2rem; border-radius: 12px; margin: 1rem 0; border-left: 4px solid #00b4ff;">
                             <h3 style="color: #00b4ff; margin-bottom: 1rem;">📚 {explanation_type} Explanation: {topic}</h3>
                         </div>
                         """, unsafe_allow_html=True)
@@ -319,11 +319,11 @@ elif feature == "Explain Topic":
 elif feature == "Generate Quiz":
     # Feature header with enhanced styling
     st.markdown("""
-    <div style="background: linear-gradient(135deg, #2a2a2a, #1a1a1a); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #333;">
+    <div style="background: #000000; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #333;">
         <h2 style="color: #ffc107; margin-bottom: 0.5rem; display: flex; align-items: center;">
             📝 Quiz Generator
         </h2>
-        <p style="color: #b0b0b0; margin: 0; font-size: 1.1rem;">
+        <p style="color: #ffffff; margin: 0; font-size: 1.1rem;">
             Test your knowledge with personalized AI-generated quizzes based on NCERT curriculum
         </p>
     </div>
@@ -400,11 +400,11 @@ elif feature == "Generate Quiz":
 elif feature == "Homework Helper":
     # Feature header with enhanced styling
     st.markdown("""
-    <div style="background: linear-gradient(135deg, #2a2a2a, #1a1a1a); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #333;">
+    <div style="background: #000000; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #333;">
         <h2 style="color: #ff6b7a; margin-bottom: 0.5rem; display: flex; align-items: center;">
             📝 Homework Helper
         </h2>
-        <p style="color: #b0b0b0; margin: 0; font-size: 1.1rem;">
+        <p style="color: #ffffff; margin: 0; font-size: 1.1rem;">
             Get intelligent, step-by-step assistance with your homework problems
         </p>
     </div>
@@ -455,36 +455,36 @@ elif feature == "Homework Helper":
 # Enhanced Footer
 st.markdown("---")
 st.markdown("""
-<div style="background: linear-gradient(135deg, #1a1a1a, #0f0f0f); padding: 3rem 2rem; border-radius: 12px; margin-top: 3rem; border: 1px solid #333; text-align: center;">
+<div style="background: #000000; padding: 3rem 2rem; border-radius: 12px; margin-top: 3rem; border: 1px solid #333; text-align: center;">
     <div style="margin-bottom: 2rem;">
-        <h3 style="color: #00ff88; margin-bottom: 1rem; font-size: 1.5rem;">🎓 AI Tutor for Indian Students</h3>
-        <p style="color: #b0b0b0; font-size: 1.1rem; margin: 0;">Empowering education through artificial intelligence</p>
+        <h3 style="color: #00ff88; margin-bottom: 1rem; font-size: 1.5rem;">🇮🇳 Bharat Tutor</h3>
+        <p style="color: #ffffff; font-size: 1.1rem; margin: 0;">Empowering education through artificial intelligence</p>
     </div>
     
     <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
         <div style="color: #00ff88;">
             <strong>🤖 Powered by</strong><br>
-            <span style="color: #b0b0b0;">Gemini AI</span>
+            <span style="color: #ffffff;">Gemini AI</span>
         </div>
         <div style="color: #00b4ff;">
             <strong>📚 Curriculum</strong><br>
-            <span style="color: #b0b0b0;">NCERT Based</span>
+            <span style="color: #ffffff;">NCERT Based</span>
         </div>
         <div style="color: #ffc107;">
             <strong>🎯 Coverage</strong><br>
-            <span style="color: #b0b0b0;">Classes 6-12</span>
+            <span style="color: #ffffff;">Classes 6-12</span>
         </div>
         <div style="color: #ff6b7a;">
             <strong>📖 Subjects</strong><br>
-            <span style="color: #b0b0b0;">All Major Subjects</span>
+            <span style="color: #ffffff;">All Major Subjects</span>
         </div>
     </div>
     
     <div style="border-top: 1px solid #333; padding-top: 1.5rem;">
-        <p style="color: #888; font-size: 0.9rem; margin: 0;">
+        <p style="color: #ffffff; font-size: 0.9rem; margin: 0;">
             <em>Making quality education accessible to all Indian students</em>
         </p>
-        <p style="color: #666; font-size: 0.8rem; margin-top: 0.5rem;">
+        <p style="color: #ffffff; font-size: 0.8rem; margin-top: 0.5rem;">
             Built with ❤️ for the future of education in India
         </p>
     </div>
