@@ -1,8 +1,8 @@
-version: '3.8'
-
 services:
   bharat-tutor:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: bharat-tutor
     restart: unless-stopped
     ports:
@@ -11,13 +11,24 @@ services:
       - .env
     volumes:
       - .:/app
-    # Uncomment the following lines if you want to use a named volume for persistent data
+      # Prevent container from overriding with compiled Python files
+      - /app/__pycache__
+      - /app/.streamlit
+      - /app/modules/__pycache__
+    # For production, you might want to use named volumes for persistent data
     # volumes:
     #   - app-data:/app/data
     #   - .:/app
     #   - /app/__pycache__
     #   - /app/.streamlit
     #   - /app/modules/__pycache__
+    environment:
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_HEADLESS=true
+      - STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
+      - STREAMLIT_SERVER_ENABLE_CORS=false
+    command: streamlit run app.py --server.port=8501 --server.address=0.0.0.0 --server.enableCORS=false
+    # Uncomment and adjust these if not using .env file
     # environment:
     #   - GEMINI_API_KEY=${GEMINI_API_KEY}
     #   - DEBUG=${DEBUG:-False}

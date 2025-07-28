@@ -30,12 +30,14 @@ Bharat Tutor AI is an advanced AI-powered educational platform designed specific
 
 ### Prerequisites
 
+- Docker and Docker Compose (for containerized deployment)
+  OR
 - Python 3.10 or higher
 - Google Gemini API key
 - Required Python packages (see `requirements.txt`)
 - Modern web browser (Chrome, Firefox, or Edge)
 
-### 🛠️ Installation
+### 🐳 Running with Docker (Recommended)
 
 1. **Clone the repository**:
    ```bash
@@ -43,7 +45,24 @@ Bharat Tutor AI is an advanced AI-powered educational platform designed specific
    cd bharat-tutor-ai
    ```
 
-2. **Set up virtual environment**:
+2. **Set up environment variables**:
+   Copy the example environment file and update it with your API key:
+   ```bash
+   cp .env.example .env
+   # Edit .env and add your Gemini API key
+   ```
+
+3. **Build and run with Docker Compose**:
+   ```bash
+   docker-compose up --build
+   ```
+
+4. **Access the application**:
+   Open your browser and go to `http://localhost:8501`
+
+### 🛠️ Manual Installation (without Docker)
+
+1. **Set up virtual environment**:
    ```bash
    python -m venv venv
    # On Windows
@@ -52,12 +71,12 @@ Bharat Tutor AI is an advanced AI-powered educational platform designed specific
    source venv/bin/activate
    ```
 
-3. **Install dependencies**:
+2. **Install dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Configure environment variables**:
+3. **Configure environment variables**:
    Create a `.env` file in the root directory with:
    ```env
    # Required
@@ -68,13 +87,33 @@ Bharat Tutor AI is an advanced AI-powered educational platform designed specific
    LOG_LEVEL=INFO
    ```
 
-### 🏃 Running the Application
+4. **Run the application**:
+   ```bash
+   streamlit run app.py
+   ```
+   Access the application at `http://localhost:8501`
 
-```bash
-streamlit run app.py
-```
+### 🏃 Development with Docker
 
-Access the application at `http://localhost:8501`
+- **Rebuild the container** (after making changes to dependencies):
+  ```bash
+  docker-compose up --build
+  ```
+
+- **Run in detached mode**:
+  ```bash
+  docker-compose up -d
+  ```
+
+- **View logs**:
+  ```bash
+  docker-compose logs -f
+  ```
+
+- **Stop the application**:
+  ```bash
+  docker-compose down
+  ```
 
 ## 🧩 Project Structure
 
