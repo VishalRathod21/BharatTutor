@@ -37,7 +37,35 @@ Bharat Tutor AI is an advanced AI-powered educational platform designed specific
 - **Context-Aware Learning**: Maintains conversation context for better assistance
 - **Secure & Private**: Local processing of sensitive information
 
-## 🚀 Getting Started
+## 🚀 Deployment
+
+### Streamlit Cloud
+
+1. Fork this repository
+2. Go to [Streamlit Cloud](https://share.streamlit.io/)
+3. Click on "New app" and select your forked repository
+4. Set the branch to `main`
+5. Set the main file path to `app.py`
+6. Click "Deploy!"
+
+### Local Development
+
+1. Clone the repository
+2. Create a virtual environment
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Run the setup script:
+   ```bash
+   ./setup.sh
+   ```
+5. Start the application:
+   ```bash
+   streamlit run app.py
+   ```
+
+## 🛠️ Getting Started
 
 ### Prerequisites
 
