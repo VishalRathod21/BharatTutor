@@ -20,7 +20,7 @@
 
 ## 📋 Overview
 
-Bharat Tutor AI is an advanced AI-powered educational platform designed specifically for Indian students following the NCERT curriculum. Leveraging Google's Gemini AI, it provides personalized learning experiences, instant doubt resolution, and curriculum-aligned study materials for students from classes 6 to 12.
+Bharat Tutor AI is an advanced AI-powered educational platform designed specifically for Indian students following the NCERT curriculum. it provides personalized learning experiences, instant doubt resolution, and curriculum-aligned study materials for students from classes 6 to 12.
 
 ## ✨ Key Features
 
@@ -168,33 +168,14 @@ Bharat Tutor uses a sophisticated RAG pipeline to provide accurate, context-awar
 
 ### 📚 Curriculum & Content
 - [ ] **NCERT Alignment**: Deep integration with NCERT curriculum
-- [ ] **Regional Language Support**: Add support for regional languages (Hindi, Tamil, etc.)
 - [ ] **Interactive Exercises**: Practice problems with step-by-step solutions
-- [ ] **Video Explanations**: Integrate educational video content
 
 ### 🤖 AI & ML Improvements
 - [ ] **Fine-tuned Models**: Domain-specific fine-tuning of LLMs
 - [ ] **Adaptive Learning**: Personalized learning paths based on performance
-- [ ] **Multimodal Learning**: Support for diagrams, equations, and images
-- [ ] **Offline Mode**: Local model support for areas with limited connectivity
-
-### 🎨 UX/UI Enhancements
-- [ ] **Student Dashboard**: Progress tracking and performance analytics
-- [ ] **Mobile App**: Native mobile experience
-- [ ] **Dark/Light Mode**: Improved theme support
-- [ ] **Accessibility**: WCAG 2.1 compliance
 
 ### 🛠️ Technical Improvements
 - [ ] **RAG Optimization**: Improved retrieval accuracy
-- [ ] **Caching**: Implement Redis for faster response times
-- [ ] **Microservices**: Break down into scalable services
-- [ ] **Analytics**: Track usage patterns and learning outcomes
-
-## 📊 Performance Metrics
-
-- **Response Time**: < 2s for most queries
-- **Accuracy**: 90%+ on curriculum-aligned questions
-- **Uptime**: 99.9% (when deployed on reliable infrastructure)
 
 ## 🤝 Contributing
 
