@@ -1,9 +1,9 @@
 import streamlit as st
 import os
-from gemini_client import GeminiClient
-from knowledge_base import NCERTKnowledgeBase
-from quiz_generator import QuizGenerator
-from conversation_memory import ConversationMemory
+from modules.gemini_client import GeminiClient
+from modules.knowledge_base import NCERTKnowledgeBase
+from modules.quiz_generator import QuizGenerator
+from modules.conversation_memory import ConversationMemory
 
 # Initialize session state
 if 'conversation_memory' not in st.session_state:
@@ -23,7 +23,7 @@ if 'knowledge_base' not in st.session_state:
 if 'quiz_generator' not in st.session_state:
     st.session_state.quiz_generator = QuizGenerator(st.session_state.gemini_client)
 
-# Page configuration
+# Basic page configuration
 st.set_page_config(
     page_title="Bharat Tutor",
     page_icon="🇮🇳",
@@ -33,101 +33,75 @@ st.set_page_config(
 
 # Load custom CSS
 def load_css():
-    with open('styles.css') as f:
+    with open('static/styles.css') as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 load_css()
 
 # Modern header with improved design
 st.markdown("""
-<div style="text-align: center; margin-bottom: 3rem; padding: 3rem 2rem; background: linear-gradient(135deg, #111111, #000000); border-radius: 20px; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);">
-    <div style="font-size: 4rem; margin-bottom: 1rem;">🇮🇳</div>
-    <h1 style="color: #00ff88; font-size: 3rem; font-weight: 800; margin-bottom: 1rem; text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);">Bharat Tutor</h1>
-    <p style="font-size: 1.3rem; color: #bbbbbb; font-weight: 300; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-        Your intelligent NCERT curriculum assistant powered by advanced AI technology
-    </p>
-    <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-        <span style="background: linear-gradient(45deg, #00ff88, #00b4ff); color: #000; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">AI Powered</span>
-        <span style="background: linear-gradient(45deg, #00b4ff, #ffc107); color: #000; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">NCERT Based</span>
-        <span style="background: linear-gradient(45deg, #ffc107, #ff6b7a); color: #000; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">Classes 6-12</span>
+<div class="bt-header">
+    <h1 class="bt-title">Bharat Tutor</h1>
+    <p class="bt-tagline">Personalized learning support for every student, every step of the way.</p>
+    <p class="bt-subtagline">Unlock your academic potential with expert guidance and interactive tools.</p>
+    <div class="bt-tags">
+        <span class="bt-tag">AI Powered</span>
+        <span class="bt-tag ncert">NCERT Based</span>
+        <span class="bt-tag classes">Classes 6-12</span>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-# Modern sidebar with enhanced design
+# Sidebar with simplified layout
 with st.sidebar:
-    st.markdown("""
-    <div style="text-align: center; margin-bottom: 3rem; padding: 2rem 1rem; background: linear-gradient(135deg, #111111, #222222); border-radius: 15px; border: 1px solid #333;">
-        <div style="font-size: 3rem; margin-bottom: 1rem;">🇮🇳</div>
-        <h2 style="color: #00ff88; margin-bottom: 0.5rem; font-size: 1.3rem; font-weight: 700;">Bharat Tutor</h2>
-        <p style="color: #bbbbbb; font-size: 0.9rem; margin: 0;">AI Learning Assistant</p>
-        <div style="width: 60px; height: 3px; background: linear-gradient(45deg, #00ff88, #00b4ff); margin: 1rem auto; border-radius: 2px;"></div>
-    </div>
-    """, unsafe_allow_html=True)
+    # Sidebar header
+    st.title("Bharat Tutor")
+    st.markdown("---")
     
-    # Feature selection with modern cards
-    st.markdown("""
-    <div style="margin-bottom: 2rem;">
-        <h3 style="color: #00ff88; margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">🚀 Learning Mode</h3>
-    </div>
-    """, unsafe_allow_html=True)
-    
+    # Learning Mode Section
+    st.subheader("🚀 Learning Mode")
     feature = st.selectbox(
         "Select Learning Mode",
-        ["Ask Doubts", "Explain Topic", "Generate Quiz", "Homework Helper"],
-        help="Choose what you'd like to do today",
-        label_visibility="collapsed"
+        ["Ask Doubts", "Explain Topic", "Generate Quiz", "Homework Helper"]
     )
     
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("---")
     
-    # Academic settings with better layout
-    st.markdown("""
-    <div style="margin-bottom: 1.5rem;">
-        <h3 style="color: #00b4ff; margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">📚 Study Settings</h3>
-    </div>
-    """, unsafe_allow_html=True)
-    
+    # Study Settings Section
+    st.subheader("📚 Study Settings")
     class_level = st.selectbox(
-        "Class Level:",
-        ["Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Class 11", "Class 12"],
-        help="Select your current class"
+        "Class Level",
+        ["Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Class 11", "Class 12"]
     )
     
     subject = st.selectbox(
-        "Subject:",
-        ["Mathematics", "Science", "Social Science", "English", "Hindi"],
-        help="Choose the subject you need help with"
+        "Subject",
+        ["Mathematics", "Science", "Social Science", "English", "Hindi"]
     )
     
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("---")
     
-    # Quick actions with modern styling
-    st.markdown("""
-    <div style="margin-bottom: 1.5rem;">
-        <h3 style="color: #ffc107; margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">⚡ Quick Actions</h3>
-    </div>
-    """, unsafe_allow_html=True)
+    # Quick Actions Section
+    st.subheader("⚡ Quick Actions")
     
-    if st.button("🗑️ Clear History", help="Clear conversation history", use_container_width=True):
-        st.session_state.conversation_memory.clear()
-        st.success("History cleared!")
-        st.rerun()
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("🗑️ Clear History"):
+            st.session_state.conversation_memory.clear()
+            st.success("History cleared!")
     
-    if st.button("📊 View Stats", help="View learning statistics", use_container_width=True):
-        stats = st.session_state.conversation_memory.get_statistics()
-        if stats['total_conversations'] > 0:
-            st.json(stats)
-        else:
-            st.info("No conversations yet!")
+    with col2:
+        if st.button("📊 View Stats"):
+            stats = st.session_state.conversation_memory.get_statistics()
+            if stats['total_conversations'] > 0:
+                st.json(stats)
+            else:
+                st.info("No conversations yet!")
     
-    # Progress section with metrics
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("""
-    <div style="margin-bottom: 1.5rem;">
-        <h3 style="color: #ff6b7a; margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">📈 Your Progress</h3>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("---")
+    
+    # Progress Section
+    st.subheader("📈 Your Progress")
     
     total_conversations = len(st.session_state.conversation_memory.get_history())
     if total_conversations > 0:
@@ -488,53 +462,41 @@ elif feature == "Homework Helper":
 st.markdown("---")
 
 with st.container():
-    # Main footer header
+    # Main footer
     st.markdown("""
-    <div style="background: linear-gradient(135deg, #111111, #000000); padding: 3rem 2rem; border-radius: 20px; margin-top: 3rem; border: 1px solid #333; text-align: center; box-shadow: 0 10px 30px rgba(0, 255, 136, 0.05);">
-        <div style="font-size: 3rem; margin-bottom: 1rem;">🇮🇳</div>
-        <h3 style="color: #00ff88; font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">Bharat Tutor</h3>
-        <p style="color: #bbbbbb; font-size: 1.2rem; margin-bottom: 2rem;">Empowering education through artificial intelligence</p>
+    <div class="bt-footer">
+        <h3 class="bt-footer-title">Bharat Tutor</h3>
+        <p class="bt-footer-tagline">Empowering students with AI-driven learning solutions</p>
+        <div class="ai-badge">
+            <span class="ai-icon">🤖</span>
+            <div>
+                <div class="ai-powered">AI Powered</div>
+                <div class="ai-model">Gemini AI</div>
+            </div>
+        </div>
     </div>
     """, unsafe_allow_html=True)
     
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<div class='footer-spacer'></div>", unsafe_allow_html=True)
     
-    # Feature highlights using columns
-    col1, col2, col3, col4 = st.columns(4)
+    # Feature highlights - only showing two cards as requested
+    col1, col2 = st.columns(2)
     
     with col1:
         st.markdown("""
-        <div style="text-align: center; padding: 2rem 1rem; background: linear-gradient(135deg, #111111, #000000); border-radius: 15px; border: 1px solid #333; box-shadow: 0 5px 15px rgba(0, 255, 136, 0.1);">
-            <div style="font-size: 2rem; margin-bottom: 1rem;">🤖</div>
-            <div style="color: #00ff88; font-weight: 700; margin-bottom: 0.5rem; font-size: 1rem;">AI Powered</div>
-            <div style="color: #bbbbbb; font-size: 0.9rem;">Gemini AI</div>
+        <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <div class="feature-title">Personalized</div>
+            <div class="feature-desc">Tailored Learning</div>
         </div>
         """, unsafe_allow_html=True)
     
     with col2:
         st.markdown("""
-        <div style="text-align: center; padding: 2rem 1rem; background: linear-gradient(135deg, #111111, #000000); border-radius: 15px; border: 1px solid #333; box-shadow: 0 5px 15px rgba(0, 180, 255, 0.1);">
-            <div style="font-size: 2rem; margin-bottom: 1rem;">📚</div>
-            <div style="color: #00b4ff; font-weight: 700; margin-bottom: 0.5rem; font-size: 1rem;">Curriculum</div>
-            <div style="color: #bbbbbb; font-size: 0.9rem;">NCERT Based</div>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    with col3:
-        st.markdown("""
-        <div style="text-align: center; padding: 2rem 1rem; background: linear-gradient(135deg, #111111, #000000); border-radius: 15px; border: 1px solid #333; box-shadow: 0 5px 15px rgba(255, 193, 7, 0.1);">
-            <div style="font-size: 2rem; margin-bottom: 1rem;">🎯</div>
-            <div style="color: #ffc107; font-weight: 700; margin-bottom: 0.5rem; font-size: 1rem;">Coverage</div>
-            <div style="color: #bbbbbb; font-size: 0.9rem;">Classes 6-12</div>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    with col4:
-        st.markdown("""
-        <div style="text-align: center; padding: 2rem 1rem; background: linear-gradient(135deg, #111111, #000000); border-radius: 15px; border: 1px solid #333; box-shadow: 0 5px 15px rgba(255, 107, 122, 0.1);">
-            <div style="font-size: 2rem; margin-bottom: 1rem;">📖</div>
-            <div style="color: #ff6b7a; font-weight: 700; margin-bottom: 0.5rem; font-size: 1rem;">Subjects</div>
-            <div style="color: #bbbbbb; font-size: 0.9rem;">All Major</div>
+        <div class="feature-card">
+            <div class="feature-icon">📚</div>
+            <div class="feature-title">Curriculum</div>
+            <div class="feature-desc">NCERT Based</div>
         </div>
         """, unsafe_allow_html=True)
     

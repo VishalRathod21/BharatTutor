@@ -1,7 +1,7 @@
 import json
 import logging
 from typing import Dict, List, Any
-from gemini_client import GeminiClient
+from modules.gemini_client import GeminiClient
 
 class QuizGenerator:
     def __init__(self, gemini_client: GeminiClient):
