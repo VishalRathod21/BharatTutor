@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  bharat-tutor:
+    build: .
+    container_name: bharat-tutor
+    restart: unless-stopped
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    # Uncomment the following lines if you want to use a named volume for persistent data
+    # volumes:
+    #   - app-data:/app/data
+    #   - .:/app
+    #   - /app/__pycache__
+    #   - /app/.streamlit
+    #   - /app/modules/__pycache__
+    # environment:
+    #   - GEMINI_API_KEY=${GEMINI_API_KEY}
+    #   - DEBUG=${DEBUG:-False}
+    #   - LOG_LEVEL=${LOG_LEVEL:-INFO}
+
+# Uncomment if using named volumes
+# volumes:
+#   app-data:

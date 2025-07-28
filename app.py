@@ -5,23 +5,54 @@ from modules.knowledge_base import NCERTKnowledgeBase
 from modules.quiz_generator import QuizGenerator
 from modules.conversation_memory import ConversationMemory
 
-# Initialize session state
+# Initialize session state variables
 if 'conversation_memory' not in st.session_state:
     st.session_state.conversation_memory = ConversationMemory()
 
+if 'api_key' not in st.session_state:
+    st.session_state.api_key = os.getenv("GEMINI_API_KEY", "")
+
 if 'gemini_client' not in st.session_state:
-    api_key = os.getenv("GEMINI_API_KEY", "")
-    if api_key:
-        st.session_state.gemini_client = GeminiClient(api_key)
-    else:
-        st.error("Please set GEMINI_API_KEY environment variable")
-        st.stop()
+    st.session_state.gemini_client = None
 
 if 'knowledge_base' not in st.session_state:
-    st.session_state.knowledge_base = NCERTKnowledgeBase()
+    st.session_state.knowledge_base = None
 
 if 'quiz_generator' not in st.session_state:
-    st.session_state.quiz_generator = QuizGenerator(st.session_state.gemini_client)
+    st.session_state.quiz_generator = None
+
+# Sidebar for API Key input
+with st.sidebar:
+    st.markdown("## 🔑 API Key Settings")
+    api_key_input = st.text_input("Enter your Gemini API Key", 
+                                value=st.session_state.api_key, 
+                                type="password",
+                                help="Get your API key from https://ai.google.dev/")
+    
+    if st.button("Save API Key"):
+        if api_key_input.strip():
+            st.session_state.api_key = api_key_input.strip()
+            try:
+                # Test the API key by creating a client
+                test_client = GeminiClient(st.session_state.api_key)
+                st.session_state.gemini_client = test_client
+                st.session_state.knowledge_base = NCERTKnowledgeBase()
+                st.session_state.quiz_generator = QuizGenerator(st.session_state.gemini_client)
+                st.success("✅ API Key saved successfully!")
+            except Exception as e:
+                st.error(f"❌ Invalid API Key. Please check and try again. Error: {str(e)}")
+                st.session_state.gemini_client = None
+        else:
+            st.warning("⚠️ Please enter a valid API Key")
+
+# Check if API key is set and valid
+if not st.session_state.gemini_client:
+    st.warning("""
+    🔑 **API Key Required**  
+    Please enter your Gemini API Key in the sidebar to get started.  
+    Don't have an API key? Get one from [Google AI Studio](https://ai.google.dev/)
+    """)
+    st.stop()
 
 # Basic page configuration
 st.set_page_config(
