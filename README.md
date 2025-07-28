@@ -7,6 +7,17 @@
   <img src="https://img.shields.io/badge/Deploy-Streamlit_Cloud-FF4B4B" alt="Deploy">
 </div>
 
+<div align="center">
+  <h1>Bharat Tutor AI</h1>
+  <p>Your Personal AI-Powered Learning Companion</p>
+  
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin: 20px 0;">
+    <img src="Assets/Screenshot_20250728_154718.png" alt="Bharat Tutor Home" width="30%" />
+    <img src="Assets/Screenshot_20250728_154948.png" alt="Bharat Tutor Features" width="30%" />
+    <img src="Assets/Screenshot_20250728_155044.png" alt="Bharat Tutor Interface" width="30%" />
+  </div>
+</div>
+
 ## 📋 Overview
 
 Bharat Tutor AI is an advanced AI-powered educational platform designed specifically for Indian students following the NCERT curriculum. Leveraging Google's Gemini AI, it provides personalized learning experiences, instant doubt resolution, and curriculum-aligned study materials for students from classes 6 to 12.
