@@ -29,7 +29,6 @@ Bharat Tutor AI is an advanced AI-powered educational platform designed specific
 - **AI-Powered Doubt Resolution**: Instant, accurate answers to academic questions
 - **Interactive Study Materials**: Engaging content with visual aids and examples
 - **NCERT-Aligned Curriculum**: Comprehensive coverage of all major subjects
-- **Multi-modal Learning**: Support for text, images, and diagrams
 
 ### 🛠️ Technical Features
 - **Modern Web Interface**: Responsive design with dark/light mode
